@@ -1,0 +1,31 @@
+[*] GTKWave save file: gtkwave fpga/build/lmm.vcd fpga/tb/lmm.gtkw
+[timestart] 0
+*-24.000000 0 -1
+@28
+tb_lmm.clk
+tb_lmm.csr_write
+@22
+tb_lmm.csr_address[4:0]
+tb_lmm.dut.u_core.st[2:0]
+@28
+tb_lmm.rd_read
+tb_lmm.rd_waitrequest
+tb_lmm.rd_readdatavalid
+@22
+tb_lmm.rd_address[31:0]
+@28
+tb_lmm.dut.u_core.issue
+tb_lmm.dut.u_core.v2
+tb_lmm.dut.u_core.dact
+@22
+tb_lmm.dut.u_core.ready[1:0]
+@28
+tb_lmm.wr_write
+tb_lmm.wr_waitrequest
+@22
+tb_lmm.wr_address[31:0]
+tb_lmm.wr_writedata[63:0]
+@28
+tb_lmm.wr_read
+tb_lmm.wr_readdatavalid
+tb_lmm.irq

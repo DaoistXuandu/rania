@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>LMM Proposal Hackathon Chip 2026</title>
+<style>
+  @page { size: A4; margin: 11mm 12mm 11mm 12mm; }
+  :root { --ink:#1b1f24; --mut:#56606b; --line:#c9d1da; --acc:#1f4e8c; --bg2:#f2f5f9; --ok:#1d6b3c; --bad:#a3271f; }
+  * { box-sizing: border-box; }
+  body { font: 8.55pt/1.32 "Helvetica Neue", Arial, sans-serif; color: var(--ink); margin: 0; background:#fff; }
+  h1 { font-size: 15pt; margin: 0 0 1mm; color: var(--acc); letter-spacing:.2px }
+  h2 { font-size: 10.6pt; margin: 3.2mm 0 1.2mm; color: var(--acc); border-bottom: .6pt solid var(--acc); padding-bottom: .6mm; }
+  h3 { font-size: 9.2pt; margin: 2.2mm 0 .8mm; }
+  p { margin: .8mm 0; }
+  .sub { color: var(--mut); font-size: 9pt; margin-bottom: 1.5mm }
+  table { border-collapse: collapse; width: 100%; margin: 1mm 0 1.4mm; font-size: 7.7pt; }
+  th, td { border: .45pt solid var(--line); padding: .55mm 1.1mm; vertical-align: top; text-align: left; }
+  th { background: #e4ebf3; font-weight: 600; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .ok { color: var(--ok); font-weight: 600 } .bad { color: var(--bad); font-weight: 600 }
+  .box { background: var(--bg2); border-left: 2pt solid var(--acc); padding: 1mm 2mm; margin: 1.2mm 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .tag { font-size: 6.8pt; color: var(--mut); }
+  code { font: 7.6pt Menlo, monospace; background: #eef1f5; padding: 0 .6mm; }
+  ul { margin: .6mm 0 .6mm 4.5mm; padding: 0; } li { margin: .2mm 0; }
+  figure { margin: 1mm 0; } figcaption { font-size: 7.3pt; color: var(--mut); }
+  .small { font-size: 7.4pt; }
+  .pb { break-before: page; }
+  svg text { font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<h1>PROPOSAL PESERTA HACKATHON CHIP 2026</h1>
+<div class="sub">Kategori: IC Chip Design &amp; FPGA Implementation &middot; Topik 03 AI/Edge Accelerator (dengan Security Design sebagai fondasi)</div>
+
+<table class="small">
+<tr><th style="width:24%">Judul Ide Desain Chip</th><td><b>LMM-16: Secure, Low-Power Tiled INT16 Matrix Engine untuk Inferensi Typed-Decision Laya pada DE10-Nano</b></td></tr>
+<tr><th>Nama Tim</th><td>[diisi tim]</td></tr>
+<tr><th>Anggota Tim (2&ndash;4)</th><td>Ketua: [Nama] &ndash; [Institusi] &ndash; [Email/HP] &middot; Anggota 1: [&hellip;] &middot; Anggota 2: [&hellip;]</td></tr>
+<tr><th>Dosen Pembimbing</th><td>[Nama Dosen &amp; Gelar] &ndash; [Institusi]</td></tr>
+</table>
+<p class="tag">Label angka: <b>[U]</b> hasil ukur/simulasi di repo ini &middot; <b>[S]</b> spesifikasi resmi &middot; <b>[E]</b> estimasi &middot; <b>[A]</b> asumsi. Semua skrip dan hasil mentah: <code>fpga/</code> (RTL, testbench, <code>fpga/results/*.json</code>).</p>
+
+<h2>1. Ringkasan Ide (Executive Summary)</h2>
+<p><b>Masalah yang diangkat.</b> Laya multilingual (321.908.995 parameter [U]) adalah model <i>typed-decision</i>: teks bebas + pilihan dinamis &rarr; probabilitas keputusan, tanpa API eksternal. Profiling CPU kami menunjukkan satu bentuk kernel, <code>Y[L,2304] = X[L,768]&middot;W[768,2304]</code> (44 pemanggilan per inferensi: 22 <code>attn.Wqkv</code> + 22 <code>mlp.Wi</code>, bobot berbeda per layer), memakan <b>35&ndash;41% waktu operator</b> [U]. Pada CPU edge kecil (Cortex-A9 800 MHz [S]) beban ini menjadi penghambat utama inferensi lokal.</p>
+<p><b>Solusi yang ditawarkan.</b> IP <b>LMM-16</b>: mesin GEMM ter-<i>tile</i> yang mengambil tile X/W dari DDR HPS, menghitung 128 MAC/siklus dengan DSP Cyclone V, dan menulis akumulator INT32 kembali ke DDR. Host tetap menjalankan tokenizer, operator lain, dan keputusan. Bobot tetap berupa <i>data</i> di DDR, bukan logika.</p>
+<p><b>Implementasi pada DE10-Nano.</b> Kontrol melalui <i>lightweight</i> HPS-to-FPGA (CSR 32-bit). Data melalui dua port FPGA-to-SDRAM 64-bit (baca X/W, tulis Y), dengan <i>completion</i> lewat IRQ f2h. Satu domain clock 100 MHz; CDC ditangani bridge hard HPS [S].</p>
+<p><b>Kebaruan &amp; keunggulan yang dapat dibuktikan</b> (bukan klaim kecepatan sebelum uji board):</p>
+<ol style="margin:.5mm 0 .5mm 5mm;padding:0">
+<li><b>Presisi berbasis bukti.</b> Gate keputusan Laya menunjukkan INT8 membalik 2 dari 12 keputusan. Kontrak <b>W16A16</b> mempertahankan 12/12 keputusan pada biaya DSP <b>sama</b> dengan INT8, karena multiplier native Cyclone V adalah 18&times;18.</li>
+<li><b>Keamanan di RTL</b>: jendela DMA terkunci, validasi <i>fail-closed</i> sebelum transaksi bus pertama, <i>guard</i> lapis-2 di tiap burst, dan <i>scrub</i> seluruh buffer. 32/32 test negatif lolos [U].</li>
+<li><b>RTL bit-exact</b> terhadap reference integer pada 72 tensor Laya nyata dan pada inferensi penuh dengan RTL di dalam loop [U].</li>
+<li>Utilisasi compute 97,6&ndash;97,9% dan perilaku <code>max(compute, transfer)</code> dibuktikan lewat simulasi sweep bandwidth [U].</li>
+</ol>
+
+<h2>2. Latar Belakang &amp; Rumusan Masalah</h2>
+<p><b>Latar belakang.</b> Brief proyek mengarahkan pada akselerator untuk kernel dominan, bukan memindahkan 322M parameter ke RTL. Bukti profiling (CPU M1, FP32, 4 thread, 12 pesan &times; panjang state 64/128/256/512; panjang gabungan L = 109/173/301/557 untuk skema uji):</p>
+<table>
+<tr><th class="n">L</th><th class="n">Kernel 768&rarr;2304, ms/inferensi [U]</th><th class="n">% aten self-CPU [U]</th><th class="n">aten::mm total [U]</th><th class="n">Median e2e, 360 run acak [U]</th><th class="n">MAC/pemanggilan</th></tr>
+<tr><td class="n">109</td><td class="n">29,4</td><td class="n">41,3%</td><td class="n">59,6%</td><td class="n">66 ms</td><td class="n">192.872.448</td></tr>
+<tr><td class="n">173</td><td class="n">35,5</td><td class="n">40,5%</td><td class="n">58,5%</td><td class="n">88 ms</td><td class="n">306.118.656</td></tr>
+<tr><td class="n">301</td><td class="n">55,1</td><td class="n">38,7%</td><td class="n">55,7%</td><td class="n">136 ms</td><td class="n">532.611.072</td></tr>
+<tr><td class="n">557</td><td class="n">95,0</td><td class="n">35,2%</td><td class="n">50,6%</td><td class="n">256 ms</td><td class="n">985.595.904</td></tr>
+</table>
+<p><b>Rumusan masalah &amp; batasan.</b></p>
+<ol style="margin:.5mm 0 .5mm 5mm;padding:0">
+<li><b>Bobot tidak muat on-chip.</b> Satu matriks INT16 berukuran 3,54 MB, sedangkan total M10K hanya 553 blok (&asymp;553 KB) [S]. Bobot harus di-stream dari DDR3 32-bit yang dipakai bersama CPU (puncak teoretis 400 MHz &times; 2 &times; 32 bit = 3,2 GB/s [S, diturunkan]).</li>
+<li><b>Presisi.</b> Kandidat harus mereproduksi keputusan <i>baseline</i>, termasuk 4 keputusan baseline yang salah; label tidak diperbaiki.</li>
+<li><b>Keamanan.</b> Master F2S dapat mengakses seluruh SDRAM [S]. Bug atau proses jahat bisa mengubah akselerator menjadi DMA liar.</li>
+<li><b>Amdahl.</b> Dengan porsi 35&ndash;41%, percepatan end-to-end pada platform yang sama dibatasi &le; 1,54&ndash;1,69&times; [D].</li>
+</ol>
+<p><b>Gap.</b> Karya DE10-Nano terdekat (Gadea-Giron&eacute;s dkk., 2024 [1]) memakai kernel OpenCL FP32 untuk CNN, mencapai 95&ndash;108 MHz pada utilisasi logic 90%. Penulisnya menyimpulkan HPS+NEON "hardly justif[ies] the use of the FPGA" kecuali FPGA membebaskan CPU, dan jalur DDR antar-kernel mendominasi. Belum ada GEMM transformer yang presisinya dipilih dari gate keputusan, aman terhadap DMA, dan bit-exact.</p>
+
+<div class="box"><b>Gate numerik: mengapa implementasi memakai INT16, bukan INT8</b> (dijalankan sebelum RTL; baris selain W16A16 adalah alternatif yang <u>ditolak</u>, bukan implementasi). 44 modul Laya diganti kernel kandidat; 12 kasus; dibandingkan dengan baseline FP32 pada proses yang sama [U, <code>fpga/results/e2e_*.json</code>].
+<table style="margin-top:1mm">
+<tr><th>Kandidat</th><th class="n">Error relatif tensor (median)</th><th class="n">Keputusan sama</th><th class="n">max|&Delta;p|</th><th>Catatan</th></tr>
+<tr><td>W8A8 per-kanal/per-token</td><td class="n">3,4e-2</td><td class="n bad">10/12</td><td class="n">0,223</td><td>billing_512, other_512 terbalik</td></tr>
+<tr><td>W8 + aktivasi FP32</td><td class="n">7,8e-3</td><td class="n bad">10/12</td><td class="n">0,057</td><td>error bobot INT8 sudah cukup membalik</td></tr>
+<tr><td>BF16 (operand), akumulasi FP32</td><td class="n">1,8e-3</td><td class="n bad">11/12</td><td class="n">0,0074</td><td>margin baseline 0,012 sangat tipis</td></tr>
+<tr><td>W12A12 / W14A14</td><td class="n">2,1e-3 / 5,2e-4</td><td class="n ok">12/12</td><td class="n">0,0053 / 0,0014</td><td>lolos tipis / aman</td></tr>
+<tr><td><b>W16A16 + &gt;&gt;10 &rarr; INT32 (kontrak)</b></td><td class="n">1,3e-4</td><td class="n ok">12/12</td><td class="n">0,0005</td><td>setara FP16 (1,6e-4); <b>dipilih</b></td></tr>
+</table>
+Literatur konsisten: aktivasi BERT memiliki outlier sehingga W8A8 PTQ gagal tanpa penanganan khusus [7]; LLM.int8() memindahkan outlier ke matmul 16-bit [8].</div>
+
+<h2>3. Proposed Chip Design</h2>
+<h3>3.1 Solusi &amp; Arsitektur Sistem</h3>
+
+<figure>
+<svg viewBox="0 0 760 196" width="100%" height="196">
+ <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1f4e8c"/></marker>
+ <marker id="r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#a3271f"/></marker>
+ <marker id="g" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1d6b3c"/></marker></defs>
+ <rect x="4" y="6" width="236" height="148" rx="4" fill="#eef3fa" stroke="#1f4e8c"/>
+ <text x="12" y="22" font-size="11" font-weight="bold">HPS: Cortex-A9 &#215;2 @800 MHz [S]</text>
+ <text x="12" y="40" font-size="9.5">user: tokenizer, Laya runtime (op. lain)</text>
+ <text x="12" y="54" font-size="9.5">adapter: quant X per-token (int16),</text>
+ <text x="12" y="67" font-size="9.5">  dequant y = y32&#183;2^10&#183;sx&#183;sw</text>
+ <text x="12" y="85" font-size="9.5">kernel: laya_mm.ko (TCB)</text>
+ <text x="12" y="98" font-size="9.5">  CMA buffer, alamat fisik, cache sync,</text>
+ <text x="12" y="111" font-size="9.5">  WIN lock, REQ_ID, timeout, IRQ</text>
+ <text x="12" y="132" font-size="9" fill="#a3271f">user tidak pernah memberi alamat fisik</text>
+ <rect x="268" y="6" width="214" height="148" rx="4" fill="#fbf6ea" stroke="#8c6a1f"/>
+ <text x="276" y="22" font-size="11" font-weight="bold">DDR3 1 GB, 32-bit (bersama) [S]</text>
+ <text x="276" y="38" font-size="9.5">Linux + runtime + model lain</text>
+ <rect x="276" y="46" width="198" height="100" fill="#fff" stroke="#8c6a1f" stroke-dasharray="3 2"/>
+ <text x="282" y="60" font-size="9.5" font-weight="bold">Jendela CMA [WIN_LO, WIN_HI)</text>
+ <text x="282" y="76" font-size="9.5">W: 44 &#215; [2304,768] int16 = 155,7 MB</text>
+ <text x="282" y="89" font-size="9.5">   (load sekali, cold start)</text>
+ <text x="282" y="105" font-size="9.5">X: [L,768] int16 &#8804; 1,5 MB</text>
+ <text x="282" y="120" font-size="9.5">Y: [L,2304] int32 &#8804; 9,4 MB</text>
+ <text x="282" y="138" font-size="9" fill="#56606b">semua base selaras 64 B</text>
+ <rect x="512" y="6" width="244" height="148" rx="4" fill="#edf7f0" stroke="#1d6b3c"/>
+ <text x="520" y="22" font-size="11" font-weight="bold">FPGA fabric: lmm_top (100 MHz [A])</text>
+ <text x="520" y="40" font-size="9.5">CSR + validator + watchdog + IRQ</text>
+ <text x="520" y="54" font-size="9.5">lmm_core: rd master, loader, xbuf/wbuf,</text>
+ <text x="520" y="67" font-size="9.5">  PE 4&#215;8 (dot4 int16), drain, obuf, wr master</text>
+ <text x="520" y="85" font-size="9.5">64 DSP (sum-of-2 + accumulate)</text>
+ <text x="520" y="98" font-size="9.5">&#8776;254&#8211;290 M10K, &#8776;4,7k FF [E]</text>
+ <line x1="512" y1="118" x2="484" y2="118" stroke="#1d6b3c" stroke-width="1.6" marker-end="url(#g)"/>
+ <text x="520" y="121" font-size="9" fill="#1d6b3c">F2S port0 Avalon 64b RO: X, W</text>
+ <line x1="512" y1="138" x2="484" y2="138" stroke="#1d6b3c" stroke-width="1.6" marker-end="url(#g)"/>
+ <text x="520" y="141" font-size="9" fill="#1d6b3c">F2S port1 Avalon 64b: Y + fence</text>
+ <polyline points="122,154 122,170 634,170 634,158" fill="none" stroke="#1f4e8c" stroke-width="1.6" marker-end="url(#a)"/>
+ <text x="300" y="166" font-size="9" fill="#1f4e8c">LW H2F AXI 32-bit &#8594; CSR (kontrol saja)</text>
+ <polyline points="694,154 694,186 92,186 92,158" fill="none" stroke="#a3271f" stroke-width="1.2" marker-end="url(#r)"/>
+ <text x="330" y="182" font-size="9" fill="#a3271f">f2h_irq0: DONE / ERROR</text>
+</svg>
+<figcaption>Gambar 1. Partisi sistem. Jalur kontrol (LW, 32-bit) terpisah dari jalur tensor (F2S, 2&times;64-bit). Tidak dipakai: H2F AXI 128 (CPU menjadi penyalin data) dan F2H/ACP (koheren tetapi melewati L2 dan bersaing dengan cache CPU; F2S terukur jauh lebih cepat [2]).</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="0 0 760 118" width="100%" height="118">
+ <defs><marker id="b" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#333"/></marker></defs>
+ <g font-size="9.5">
+ <rect x="4" y="8" width="104" height="44" fill="#e4ebf3" stroke="#1f4e8c"/><text x="10" y="24">CSR (frozen</text><text x="10" y="36">while busy)</text><text x="10" y="48">WIN lock 1&times;</text>
+ <rect x="4" y="62" width="104" height="48" fill="#fde9e7" stroke="#a3271f"/><text x="10" y="78">validator</text><text x="10" y="90">fail-closed,</text><text x="10" y="102">0 bus txn</text>
+ <rect x="124" y="8" width="96" height="102" fill="#e4ebf3" stroke="#1f4e8c"/><text x="130" y="24">scheduler</text><text x="130" y="38">blok X 128</text><text x="130" y="50">&rarr; panel W 32</text><text x="130" y="62">&rarr; tile 4&times;8</text><text x="130" y="74">&rarr; kw (4 el.)</text><text x="130" y="92">watchdog,</text><text x="130" y="104">abort &rarr; STOP</text>
+ <rect x="236" y="8" width="96" height="44" fill="#edf7f0" stroke="#1d6b3c"/><text x="242" y="24">lmm_rd</text><text x="242" y="36">burst 8&times;64b</text><text x="242" y="48">guard lapis-2</text>
+ <rect x="236" y="62" width="96" height="48" fill="#edf7f0" stroke="#1d6b3c"/><text x="242" y="78">loader map</text><text x="242" y="90">baris m &rarr; bank</text><text x="242" y="102">m mod 4 / n mod 8</text>
+ <rect x="348" y="8" width="104" height="44" fill="#fbf6ea" stroke="#8c6a1f"/><text x="354" y="24">xbuf 4 bank</text><text x="354" y="36">128&times;768 int16</text><text x="354" y="48">192 KB</text>
+ <rect x="348" y="62" width="104" height="48" fill="#fbf6ea" stroke="#8c6a1f"/><text x="354" y="78">wbuf 8 bank</text><text x="354" y="90">ping-pong 2&times;</text><text x="354" y="102">32&times;768 = 96 KB</text>
+ <rect x="468" y="8" width="112" height="102" fill="#e8f0ff" stroke="#1f4e8c"/><text x="474" y="24">PE array 4&times;8</text><text x="474" y="38">dot4 int16/siklus</text><text x="474" y="50">= 128 MAC/siklus</text><text x="474" y="64">acc 42-bit</text><text x="474" y="78">(|acc|&lt;2^40)</text><text x="474" y="92">round &gt;&gt;10</text><text x="474" y="104">&rarr; int32</text>
+ <rect x="596" y="8" width="72" height="102" fill="#fbf6ea" stroke="#8c6a1f"/><text x="602" y="24">drain</text><text x="602" y="36">16 siklus</text><text x="602" y="54">obuf</text><text x="602" y="66">ping-pong</text><text x="602" y="78">2&times;4&times;32</text><text x="602" y="90">int32</text>
+ <rect x="684" y="8" width="72" height="102" fill="#edf7f0" stroke="#1d6b3c"/><text x="690" y="24">lmm_wr</text><text x="690" y="36">burst 8</text><text x="690" y="48">guard</text><text x="690" y="60">lapis-2</text><text x="690" y="78">fence</text><text x="690" y="90">read</text>
+ </g>
+ <g stroke="#333" stroke-width="1.1" marker-end="url(#b)">
+ <line x1="108" y1="30" x2="124" y2="30"/><line x1="220" y1="30" x2="236" y2="30"/><line x1="284" y1="52" x2="284" y2="62"/>
+ <line x1="332" y1="86" x2="348" y2="30"/><line x1="332" y1="86" x2="348" y2="86"/>
+ <line x1="452" y1="30" x2="468" y2="40"/><line x1="452" y1="86" x2="468" y2="80"/><line x1="580" y1="60" x2="596" y2="60"/><line x1="668" y1="60" x2="684" y2="60"/>
+ </g>
+</svg>
+<figcaption>Gambar 2. Arsitektur internal IP. Setelah DONE, ERROR, atau abort, <code>lmm_scrub</code> menulis nol ke xbuf, wbuf, obuf, akumulator, dan register drain (6.144 siklus = 61 &micro;s).</figcaption>
+</figure>
+
+<h3>Kontrak numerik, pemrosesan, dan alasan pemilihan</h3>
+<p><code>qx = clip(rint(x/sx), &plusmn;32767)</code> dengan <code>sx</code> per token; <code>qw</code> per kanal keluaran, dikuantisasi offline. <code>acc = &Sigma;<sub>k</sub> qx&middot;qw</code> eksak dengan |acc| &lt; K&middot;2<sup>30</sup> &le; 2<sup>40</sup>, sehingga akumulator 42-bit tidak bisa overflow (validator menjaga K &le; 768). Keluaran <code>y32 = (acc + 2<sup>9</sup>) &gt;&gt;&gt; 10</code> (round-half-up, |y32| &lt; 2<sup>30</sup>) muat di INT32 tanpa saturasi. Host melakukan dequant: <code>y = y32&middot;2<sup>10</sup>&middot;sx&middot;sw</code>.</p>
+<p><b>Mengapa 16-bit?</b> DSP Cyclone V mengalikan 18&times;18 secara native (2 per blok, mode sum + akumulator 64-bit [S, 3, 4]). Jadi INT16 tidak menambah DSP dibanding INT8; biayanya hanya traffic W 2&times; dan BRAM 2&times;. Ini lebih murah daripada kehilangan keputusan.</p>
+<p><b>Lima level yang dipisahkan:</b></p>
+<ol style="margin:.5mm 0 .5mm 5mm;padding:0">
+<li>Golden FP32 PyTorch.</li>
+<li>Reference integer <code>lmm_ref.py</code>.</li>
+<li>RTL. Wajib bit-exact terhadap level 2.</li>
+<li>Adapter simulator <code>rtl_kernel.py</code>. Kontraknya <code>matmul(x,w)</code> FP32&rarr;FP32, sama dengan <code>verification_v1.py</code>.</li>
+<li>Driver HPS di board (rencana).</li>
+</ol>
+
+<h3>Arsitektur memori &amp; penempatan blok (dengan perhitungan)</h3>
+<table>
+<tr><th>Data</th><th>Lokasi</th><th class="n">Ukuran</th><th>Justifikasi</th></tr>
+<tr><td>Bobot Wqkv/Wi 44 matriks</td><td>DDR, CMA milik driver; RO bagi FPGA</td><td class="n">155,7 MB</td><td>tidak muat on-chip; tidak di-mmap ke user (integritas)</td></tr>
+<tr><td>X blok (T<sub>M</sub>=128 baris)</td><td>xbuf M10K, 4 bank (baris m &rarr; bank m mod 4)</td><td class="n">192 KB</td><td>dipakai ulang oleh 72 panel W (N/32); W dibaca &lceil;L/128&rceil; kali</td></tr>
+<tr><td>W panel (T<sub>N</sub>=32 baris) &times;2</td><td>wbuf M10K, 8 bank, ping-pong</td><td class="n">96 KB</td><td>panel p dihitung saat p+1 dimuat; T<sub>N</sub> minimum yang masih overlap</td></tr>
+<tr><td>Segmen Y</td><td>obuf M10K, ping-pong</td><td class="n">2 KB</td><td>compute tidak menunggu tulis</td></tr>
+<tr><td>Akumulator, drain</td><td>register (DSP acc + FF)</td><td class="n">32&times;42 b + 32&times;32 b</td><td>di-scrub tiap request</td></tr>
+<tr><td>Deskriptor</td><td>register CSR (bukan di DDR)</td><td class="n">15&times;32 b</td><td>dibekukan saat busy: tanpa TOCTOU</td></tr>
+</table>
+<p><b>Pemilihan tile.</b> Traffic W per pemanggilan adalah &lceil;L/T<sub>M</sub>&rceil;&times;3,54 MB. Untuk L=557 [D]:</p>
+<table class="small">
+<tr><th>T<sub>M</sub></th><th class="n">xbuf</th><th class="n">Traffic W</th><th>Kesimpulan</th></tr>
+<tr><td class="n">64</td><td class="n">96 M10K</td><td class="n">31,9 MB</td><td>traffic W terbesar</td></tr>
+<tr><td class="n"><b>128</b></td><td class="n">192 M10K</td><td class="n">17,7 MB</td><td><b>dipilih</b>: T<sub>M</sub> terbesar yang masih menyisakan margin</td></tr>
+<tr><td class="n">256</td><td class="n">384 M10K</td><td class="n">10,6 MB</td><td>tidak muat bersama wbuf (&gt; 553)</td></tr>
+</table>
+<p>T<sub>N</sub> tidak mengubah traffic. Ia hanya menentukan ukuran wbuf dan syarat overlap: compute per panel 24.576 siklus harus &ge; muat panel 6.144 beat + tulis 2.048 beat. T<sub>N</sub>=32 memenuhi syarat dengan wbuf terkecil (96 M10K), sehingga daya statis/dinamis BRAM lebih rendah.</p>
+<p><b>Packing M10K.</b> Kebutuhan bit ideal: xbuf 1,57 Mbit = 154 blok, wbuf 0,79 Mbit = 77 blok. Mode 256&times;40 atau 512&times;20 untuk word 64-bit menjadi 192 + 96 + 2 = 290 blok (batas atas). Yosys memetakan 254 blok (46%) [E].</p>
+
+<h3>Komunikasi, register map, dan urutan satu request</h3>
+<table class="small">
+<tr><th>Interface</th><th>Spesifikasi resmi [S]</th><th>Pilihan &amp; alasan</th></tr>
+<tr><td>LW HPS-to-FPGA</td><td>AXI 32-bit tetap, base 0xFF20_0000 (2 MB)</td><td>CSR Avalon 32-bit; latensi rendah, terisolasi dari data</td></tr>
+<tr><td>FPGA-to-SDRAM (F2S)</td><td>AXI-3/Avalon-MM, &le; 6 port, 32/64/128/256 bit per port; MPFE bersama</td><td>2 port Avalon 64-bit. Kebutuhan rata-rata 297&ndash;359 MB/s [U] = 37&ndash;45% puncak port 64-bit @100 MHz. 128/256-bit hanya menambah ALM, routing, dan daya tanpa throughput (compute-bound). Pengukuran Cyclone V: F2S jauh lebih cepat dari F2H, dan seluruh transfer FPGA&rarr;HPS &lt; 1.500 MB/s [2]; R+W serentak 20,08 Gbps [5].</td></tr>
+<tr><td>Reset/CDC</td><td>bridge HPS punya clock crossing asinkron; port F2S dilepas lewat <code>fpgaportrst</code> (0xFFC2_5080) saat SDRAM idle</td><td>satu clock 100 MHz; reset async-assert/sync-release; urutan: konfigurasi FPGA &rarr; bridge &rarr; <code>fpgaportrst</code> (U-Boot) &rarr; probe driver</td></tr>
+</table>
+<p class="small"><b>Register map</b> (word offset): 0x00 ID &middot; 0x01 CTRL (START, ABORT, IRQ_EN, CLR) &middot; 0x02 STATUS {err_code, rejected, err, done, busy, state} &middot; 0x03/0x04 REQ_ID/DONE_ID &middot; 0x05&ndash;0x07 M, K, N &middot; 0x08&ndash;0x0A alamat X, W, Y &middot; 0x0B TIMEOUT &middot; 0x0C&ndash;0x0E WIN_LO, WIN_HI, WIN_LOCK &middot; 0x10&ndash;0x13 PERF (siklus, siklus MAC, beat baca, beat tulis).</p>
+<p class="small"><b>Urutan request dan kepemilikan buffer:</b></p>
+<ol class="small" style="margin:.5mm 0 .5mm 5mm;padding:0">
+<li><b>Host.</b> Kuantisasi X ke slot CMA, lalu <code>ioctl(SUBMIT)</code>. Driver menulis CSR, REQ_ID, START. X, W, dan Y berpindah milik ke device.</li>
+<li><b>CHECK.</b> Bila gagal, kirim ERROR dengan 0 beat bus.</li>
+<li><b>LDX.</b> Muat blok X.</li>
+<li><b>LDW.</b> Muat panel 0.</li>
+<li><b>PANEL.</b> Compute panel p sambil memuat panel p+1. Segmen Y ditulis segera setelah drain.</li>
+<li><b>FLUSH, lalu fence read.</b> Satu baca alamat Y terakhir di port yang sama, supaya DONE tidak mendahului data.</li>
+<li><b>SCRUB.</b> Lalu DONE, DONE_ID=REQ_ID, dan IRQ.</li>
+<li><b>Driver.</b> Cocokkan DONE_ID (completion basi ditolak), lalu <code>dma_sync_for_cpu(Y)</code>. Buffer kembali milik user.</li>
+</ol>
+
+<h3>Security Design (fondasi, bukan tempelan)</h3>
+<p class="small"><b>Threat model.</b></p>
+<ul class="small">
+<li><b>Dipercaya:</b> bitstream, kernel, dan driver.</li>
+<li><b>Tidak dipercaya:</b> proses user/adapter, dimensi, dan isi tensor.</li>
+<li><b>Aset:</b> memori DDR proses lain/kernel (paling kritis), teks pelanggan dalam X/Y (privasi), integritas bobot dan hasil.</li>
+<li><b>Batas:</b> bila root/kernel kompromi, isolasi hilang (bisa reprogram FPGA atau memakai <code>/dev/mem</code>). Proteksi port di SDRAM controller dicatat sebagai lapis-3 opsional.</li>
+<li><b>Tanpa kriptografi:</b> bobot Laya publik, dan checksum bukan autentikasi.</li>
+</ul>
+<table class="small">
+<tr><th>Ancaman</th><th>Ditegakkan driver</th><th>Ditegakkan RTL (diuji)</th></tr>
+<tr><td>DMA di luar buffer</td><td>user hanya memberi slot</td><td>WIN terkunci; validator; guard per burst di rd/wr (kode 4, 9)</td></tr>
+<tr><td>Overflow alamat/ukuran</td><td>hitung 64-bit</td><td>ujung region 34-bit; Y=0xFFFF_FFC0 ditolak</td></tr>
+<tr><td>Dimensi ilegal</td><td>cek</td><td>1&le;M&le;1024; 64&le;K&le;768, K%32=0; 32&le;N&le;2304, N%32=0; TIMEOUT&gt;0</td></tr>
+<tr><td>Overlap berbahaya</td><td>slot terpisah</td><td>Y&cap;X = &empty; dan Y&cap;W = &empty; (kode 5)</td></tr>
+<tr><td>Deskriptor berubah / request saat busy</td><td>mutex</td><td>argumen beku saat busy; START/tulis ditolak dan diberi flag</td></tr>
+<tr><td>Hang, abort di tengah burst</td><td>timeout &rarr; ABORT &rarr; reset bridge</td><td>watchdog (7), ABORT (8): berhenti issue, terima sisa beat, burst tidak terpotong</td></tr>
+<tr><td>Completion basi / residu data</td><td>cek DONE_ID</td><td>DONE_ID hanya saat sukses; scrub semua buffer; fault dibersihkan saat scrub</td></tr>
+</table>
+
+<h3>Daya rendah sebelum optimasi</h3>
+<ul class="small">
+<li><b>Reuse</b> menekan traffic DDR. X dipakai 72&times;; W dipakai 32 tile baris per blok.</li>
+<li><b>Clock enable dan operand isolation.</b> RAM hanya membaca saat <code>issue</code>; register dot/acc hanya aktif saat valid. Tidak ada gated clock di fabric.</li>
+<li><b>Port 64-bit</b>, bukan 128/256.</li>
+<li><b>128 lane, bukan 224.</b> 224 lane butuh &asymp;525 MB/s rata-rata, sedangkan sweep menunjukkan lebar pita bersama menjadi batas.</li>
+<li><b>IRQ, bukan busy-poll.</b></li>
+</ul>
+<p class="small"><b>Metrik dibedakan:</b> idle, dinamis (Quartus Power Analyzer + aktivitas simulasi), daya total board, dan energi per inferensi. Belum ada angka watt hasil ukur.</p>
+<p class="small"><b>Referensi daya [1]:</b> board DE10-Nano 3,72 W saat ARM-only dan 7,45 W dengan desain FPGA aktif. Jadi energi hanya menang bila latensi turun &gt; &asymp;2&times;.</p>
+
+<h3>Rincian modul RTL (Verilog-2001, total 585 baris)</h3>
+<table class="small">
+<tr><th>Modul</th><th class="n">Baris</th><th>Fungsi &amp; invarian</th></tr>
+<tr><td>lmm_top</td><td class="n">162</td><td>CSR Avalon, validator <i>fail-closed</i>, WIN lock, watchdog, PERF, IRQ, reset sync</td></tr>
+<tr><td>lmm_core</td><td class="n">274</td><td>FSM IDLE&rarr;LDX&rarr;LDW&rarr;PANEL&rarr;FLUSH&rarr;FENCE&rarr;SCRUB (STOP saat abort); loader map; PE 4&times;8 dot4; drain; ping-pong</td></tr>
+<tr><td>lmm_rd / lmm_wr</td><td class="n">52 / 80</td><td>master burst Avalon; guard lapis-2; outstanding dibatasi 256 beat (counter tidak wrap); fence</td></tr>
+<tr><td>lmm_ram</td><td class="n">17</td><td>RAM dual-port, baca terdaftar dengan enable (inferensi M10K)</td></tr>
+</table>
+<p class="small">Custom ISA tidak diperlukan: operasinya satu (GEMM) dengan layout tetap, sehingga register cukup dan permukaan serangan lebih kecil.</p>
+
+<h3>Estimasi penggunaan resource FPGA</h3>
+<table>
+<tr><th>Komponen</th><th class="n">Estimasi (Yosys <code>synth_intel_alm</code> Cyclone V) [E]</th><th class="n">Kapasitas 5CSEBA6 [S]</th><th class="n">%</th></tr>
+<tr><td>Logic (ALM)</td><td class="n">13,8k LUT &asymp; 7&ndash;9k ALM</td><td class="n">41.910 ALM (110K LE)</td><td class="n">17&ndash;22</td></tr>
+<tr><td>Register</td><td class="n">4.674 FF</td><td class="n">166.036</td><td class="n">2,8</td></tr>
+<tr><td>Block RAM (M10K)</td><td class="n">254 (batas atas 290)</td><td class="n">553 blok / 5.570 Kb</td><td class="n">46&ndash;52</td></tr>
+<tr><td>DSP</td><td class="n">128 mult. 18&times;18 array = 64 blok; +3 validator</td><td class="n">112 blok / 224 mult.</td><td class="n">57&ndash;60</td></tr>
+<tr><td>Clock target</td><td class="n">100 MHz [A]</td><td class="n">DSP mode sum 250 MHz (&minus;I7) [3]</td><td class="n">&ndash;</td></tr>
+</table>
+<p class="small">Catatan: template menulis register 415.000; Device Overview resmi menyebut 166.036 [S]. Angka Yosys bukan hasil fit Quartus. Fmax baru sah setelah timing closure. Karya HLS sebanding menutup timing pada 95&ndash;108 MHz walau logic-nya 90% terpakai [1].</p>
+<p class="small"><b>Tools:</b> Icarus Verilog 13 + GTKWave (unit/keamanan/waveform), Verilator 5.052 (replay besar, &asymp;200&times; Icarus), Python/NumPy/PyTorch (reference, gate), Yosys 0.69 (estimasi), Intel Quartus Prime Lite + Platform Designer + SignalTap (board; butuh host Linux/Windows x86).</p>
+
+<h3>3.2 Rencana Pengujian &amp; Hasil Simulasi (MacBook Air M1)</h3>
+<table>
+<tr><th>Uji</th><th>Isi</th><th>Hasil [U]</th></tr>
+<tr><td>Keamanan (<code>+test=sec</code>)</td><td>start tanpa lock, 8 argumen ilegal, misalign, luar window, wrap 4 GB, overlap X/W, tulis saat busy, DONE_ID, IRQ, watchdog, abort, guard lapis-2 (bound dirusak setelah validasi), pemulihan, scrub &times;3</td><td class="ok">32/32 lolos di Icarus &amp; Verilator; request ditolak = 0 beat bus; monitor 0 pelanggaran</td></tr>
+<tr><td>Bentuk &amp; stall acak</td><td>M&isin;{1,3,4,5,9,31,127,128,129,130}, K 64&ndash;256, N 32&ndash;96, magnitudo terburuk &plusmn;32767, stall 0/20/60%, latensi 1/8/30</td><td class="ok">10/10 bit-exact</td></tr>
+<tr><td>Fixture Laya</td><td>72 tensor nyata (12 kasus &times; layer 0/11/21 &times; Wqkv/Wi), L = 109&ndash;557</td><td class="ok">72/72 bit-exact; error vs FP32 &le; 1,76e-4 (median 9,3e-5)</td></tr>
+<tr><td>Inferensi penuh, RTL di loop</td><td>44 modul &times; 12 kasus via <code>rtl_kernel.matmul</code></td><td class="ok">12/12 keputusan sama dengan baseline (termasuk 4 baseline yang salah); max|&Delta;p| 0,0005; 528 pemanggilan RTL; 69,8&ndash;347,9 juta siklus/inferensi</td></tr>
+</table>
+
+<figure>
+<img src="../results/wave_zoom.svg" style="width:100%;height:auto">
+<figcaption>Gambar 3. Waveform (Icarus + GTKWave, <code>fpga/tb/lmm.gtkw</code>) untuk GEMM M=9, K=64, N=64, stall 20%, latensi 8. Urutannya: START, LDX, LDW, lalu PANEL (prefetch panel 1 bertumpuk dengan MAC, drain, dan tulis Y), fence read, SCRUB.</figcaption>
+</figure>
+
+<table>
+<tr><th class="n">L</th><th class="n">Siklus total [U]</th><th class="n">Siklus MAC [U]</th><th class="n">Utilisasi</th><th class="n">Baca + tulis DDR [U]</th><th class="n">ms/call @100 MHz</th><th class="n">BW rata-rata</th><th class="n">44 call: waktu / traffic</th></tr>
+<tr><td class="n">109</td><td class="n">1.586.114</td><td class="n">1.548.288</td><td class="n">97,6%</td><td class="n">3,71 + 1,00 MB</td><td class="n">15,9</td><td class="n">297 MB/s</td><td class="n">0,70 s / 207 MB</td></tr>
+<tr><td class="n">173</td><td class="n">2.492.738</td><td class="n">2.433.024</td><td class="n">97,6%</td><td class="n">7,34 + 1,59 MB</td><td class="n">24,9</td><td class="n">359 MB/s</td><td class="n">1,10 s / 393 MB</td></tr>
+<tr><td class="n">301</td><td class="n">4.297.754</td><td class="n">4.202.496</td><td class="n">97,8%</td><td class="n">11,08 + 2,77 MB</td><td class="n">43,0</td><td class="n">322 MB/s</td><td class="n">1,89 s / 610 MB</td></tr>
+<tr><td class="n">557</td><td class="n">7.907.700</td><td class="n">7.741.440</td><td class="n">97,9%</td><td class="n">18,55 + 5,13 MB</td><td class="n">79,1</td><td class="n">300 MB/s</td><td class="n">3,48 s / 1.042 MB</td></tr>
+</table>
+<p class="small">Siklus MAC sama persis dengan rumus &lceil;L/4&rceil;&middot;(N/8)&middot;(K/4), dan byte baca/tulis sama dengan X + &lceil;L/128&rceil;&middot;W + Y. Waktu dalam ms adalah siklus terukur dikali clock asumsi; ini bukan waktu FPGA terukur.</p>
+<p class="small"><b>Sweep bandwidth DDR bersama</b> (token bucket R+W, arbitrasi round-robin seperti MPFE) [U]. Overhead terhadap compute murni untuk L=109 / 557:</p>
+<table class="small" style="width:auto">
+<tr><th class="n">Bandwidth efektif</th><th class="n">L=109</th><th class="n">L=557</th></tr>
+<tr><td class="n">800 MB/s</td><td class="n">2,2%</td><td class="n">2,0%</td></tr>
+<tr><td class="n">500 MB/s</td><td class="n">3,3%</td><td class="n">4,7%</td></tr>
+<tr><td class="n">300 MB/s</td><td class="n">5,2%</td><td class="n">13,5%</td></tr>
+<tr><td class="n">200 MB/s</td><td class="n">54%</td><td class="n">54%</td></tr>
+</table>
+<p class="small">Pada 200 MB/s hasilnya 0,7% dari batas teoretis <code>traffic/BW</code>, jadi perilakunya mengikuti <code>max(compute, transfer)</code>. Bila read diberi prioritas mutlak, overhead pada 800 MB/s naik ke 24%. Konsekuensinya, bobot port MPFE harus diatur di board (temuan desain).</p>
+
+<p><b>Uji board DE10-Nano (rencana):</b></p>
+<ol style="margin:.5mm 0 .5mm 5mm;padding:0">
+<li>Platform Designer: HPS dengan F2S port0 RO-64 dan port1 RW-64, LW &rarr; CSR, <code>f2h_irq0</code>.</li>
+<li>Sintesis, fit, dan TimeQuest pada 100 MHz.</li>
+<li><code>fpgaportrst</code> di U-Boot, lalu <code>laya_mm.ko</code>.</li>
+<li>Replay 72 fixture (bit-exact) dan test negatif di board.</li>
+<li>Bandingkan dengan GEMM INT16 HPS-only (C+NEON) pada data yang sama.</li>
+<li>SignalTap pada state, beat, dan stall.</li>
+<li>Daya 5 V lewat meter inline: idle, aktif, dan energi per call.</li>
+</ol>
+<table class="small">
+<tr><th>Metrik keberhasilan</th><th>Target</th></tr>
+<tr><td>Integer</td><td>0 mismatch di simulasi dan board</td></tr>
+<tr><td>Keputusan</td><td>12/12 sama dengan baseline; max|&Delta;p| &le; 0,01</td></tr>
+<tr><td>Keamanan</td><td>100% test negatif ditolak tanpa transaksi bus</td></tr>
+<tr><td>Throughput</td><td>&ge; 90% dari 128 MAC &times; f<sub>clk</sub> pada L=557</td></tr>
+<tr><td>Timing</td><td>slack positif di semua corner</td></tr>
+<tr><td>Energi</td><td>J/inferensi kernel &lt; HPS-only (diukur, bukan diasumsikan)</td></tr>
+</table>
+<p class="small"><b>Estimasi pembanding (belum diukur).</b> GEMM INT16 HPS-only dengan asumsi 0,5&ndash;3 GMAC/s [A] butuh 14&ndash;87 s untuk 44 call pada L=557, sedangkan LMM-16 butuh 3,48 s. Dengan daya board dari [1], energi diperkirakan &asymp;26 J vs 54&ndash;323 J, jadi keunggulan &asymp;2&ndash;12&times; [E] hanya di level kernel.</p>
+
+<h2>4. Referensi</h2>
+<ol class="small" style="padding-left:4.5mm;margin:0">
+<li>R. Gadea-Giron&eacute;s, J. L. Rocabado-Rocha, J. Fe, J. M. Monzo, "A Heterogeneous Inference Framework for a Deep Neural Network," <i>Electronics</i> 13(2):348, 2024, doi:10.3390/electronics13020348 (DE10-Nano: Tabel 8&ndash;10 latensi, resource, daya).</li>
+<li>R. G. Molanes, J. J. Rodr&iacute;guez-Andina, J. Fari&ntilde;a, "Performance Characterization and Design Guidelines for Efficient Processor&ndash;FPGA Communication in Cyclone V FPSoCs," <i>IEEE Trans. Ind. Electron.</i> 65(5):4368&ndash;4377, 2018, doi:10.1109/TIE.2017.2766581; data: github.com/UviDTE-FPSoC/CycloneVSoC-time-measurements.</li>
+<li>Intel, <i>Cyclone V Device Datasheet</i> CV-51002, 2019.11.27, Tabel 32 (performa DSP), Tabel 40 (clock HPS).</li>
+<li>Intel, <i>Cyclone V Device Overview</i> CV-51001/683694, 2018.05.07 (Tabel 10, 16, 17; bridge HPS&ndash;FPGA; SDRAM 400 MHz); Altera WP-01159 (variable-precision DSP); <i>Introduction to Cyclone V HPS</i> cv_54001, 2014.02.28 (F2S: AXI-3/Avalon, &le; 6 port, 32&ndash;256 bit; LW 0xFF20_0000).</li>
+<li>R. Novickis, M. Greit&#257;ns, "FPGA Master based on chip communications architecture for Cyclone V SoC running Linux," CoDIT 2018, pp. 403&ndash;408, doi:10.1109/CODIT.2018.8394842.</li>
+<li>Terasic/Intel, <i>DE10-Nano Get Started Guide</i> (A9 800 MHz, 1 GB DDR3 32-bit); Linux <code>drivers/fpga/altera-fpga2sdram.c</code> (FPGAPORTRST).</li>
+<li>Y. Bondarenko, M. Nagel, T. Blankevoort, "Understanding and Overcoming the Challenges of Efficient Transformer Quantization," EMNLP 2021, arXiv:2109.12948.</li>
+<li>T. Dettmers et al., "LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale," NeurIPS 2022, arXiv:2208.07339.</li>
+<li>Laya: github.com/NandhaKishorM/laya; model convaiinnovations/laya (multilingual). Hasil repo ini: <code>profiling_v2/</code>, <code>verification_v1_results/</code>, <code>fpga/results/</code>.</li>
+</ol>
+
+<h2>5. Lampiran</h2>
+<div class="grid2">
+<div>
+<h3>Tim &amp; Pembagian Peran</h3>
+<table class="small">
+<tr><th>Nama</th><th>Keahlian</th><th>Peran</th></tr>
+<tr><td>[Ketua]</td><td>[&hellip;]</td><td>RTL &amp; integrasi Platform Designer</td></tr>
+<tr><td>[Anggota 1]</td><td>[&hellip;]</td><td>driver Linux, HPS baseline</td></tr>
+<tr><td>[Anggota 2]</td><td>[&hellip;]</td><td>verifikasi, daya, laporan</td></tr>
+</table>
+<h3>Luaran &amp; Demo</h3>
+<ul class="small">
+<li><b>Repository:</b> <code>fpga/rtl</code> (585 baris), <code>fpga/tb</code>, <code>fpga/sw</code> (reference, gate, harness), dan hasil JSON. <code>.sof/.rbf</code> dibuat saat bootcamp.</li>
+<li><b>Demo live:</b> replay fixture Laya di board (bit-exact), test negatif keamanan, serta pembacaan PERF dan daya.</li>
+<li><b>Video 3&ndash;5 menit:</b> alur request dan waveform.</li>
+</ul>
+</div>
+<div>
+<h3>Rencana Bootcamp (3 Hari)</h3>
+<table class="small">
+<tr><th>Hari</th><th>Fokus</th><th>Target</th></tr>
+<tr><td>1</td><td>Quartus fit/timing, HPS + F2S, <code>fpgaportrst</code>, driver</td><td>GEMM kecil bit-exact di board</td></tr>
+<tr><td>2</td><td>Replay 72 fixture, HPS-only C/NEON, SignalTap</td><td>tabel siklus/latensi/BW terukur</td></tr>
+<tr><td>3</td><td>Daya &amp; energi, test negatif di board, demo</td><td>laporan teknis, video</td></tr>
+</table>
+<h3>Risiko &amp; mitigasi</h3>
+<ul class="small">
+<li><b>Bring-up F2S/<code>fpgaportrst</code>.</b> Mitigasi: jalur cadangan F2H, dengan kontrak RTL tetap.</li>
+<li><b>Fmax &lt; 100 MHz.</b> Mitigasi: tambah stage pipeline dot4.</li>
+<li><b>Arbitrasi DDR.</b> Mitigasi: atur bobot MPFE, atau perbesar obuf.</li>
+<li><b>Runtime ARMv7 untuk e2e.</b> Mitigasi: demo tingkat kernel.</li>
+<li><b>Quartus tidak ada di macOS.</b> Mitigasi: host x86.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "L": 109,
+    "bw_beats_per_100": 0,
+    "MBps_at_100MHz": null,
+    "cycles": 1582936,
+    "compute_cycles": 1548288,
+    "overhead": 0.022378265542328135,
+    "exact": true
+  },
+  {
+    "L": 109,
+    "bw_beats_per_100": 100,
+    "MBps_at_100MHz": 800,
+    "cycles": 1582936,
+    "compute_cycles": 1548288,
+    "overhead": 0.022378265542328135,
+    "exact": true
+  },
+  {
+    "L": 109,
+    "bw_beats_per_100": 62,
+    "MBps_at_100MHz": 496,
+    "cycles": 1599492,
+    "compute_cycles": 1548288,
+    "overhead": 0.033071366567460236,
+    "exact": true
+  },
+  {
+    "L": 109,
+    "bw_beats_per_100": 37,
+    "MBps_at_100MHz": 296,
+    "cycles": 1628978,
+    "compute_cycles": 1548288,
+    "overhead": 0.05211562706679884,
+    "exact": true
+  },
+  {
+    "L": 109,
+    "bw_beats_per_100": 25,
+    "MBps_at_100MHz": 200,
+    "cycles": 2376156,
+    "compute_cycles": 1548288,
+    "overhead": 0.534698970734127,
+    "exact": true
+  },
+  {
+    "L": 557,
+    "bw_beats_per_100": 0,
+    "MBps_at_100MHz": null,
+    "cycles": 7892240,
+    "compute_cycles": 7741440,
+    "overhead": 0.019479580026455112,
+    "exact": true
+  },
+  {
+    "L": 557,
+    "bw_beats_per_100": 100,
+    "MBps_at_100MHz": 800,
+    "cycles": 7892488,
+    "compute_cycles": 7741440,
+    "overhead": 0.019511615410052974,
+    "exact": true
+  },
+  {
+    "L": 557,
+    "bw_beats_per_100": 62,
+    "MBps_at_100MHz": 496,
+    "cycles": 8107190,
+    "compute_cycles": 7741440,
+    "overhead": 0.04724573206018512,
+    "exact": true
+  },
+  {
+    "L": 557,
+    "bw_beats_per_100": 37,
+    "MBps_at_100MHz": 296,
+    "cycles": 8788506,
+    "compute_cycles": 7741440,
+    "overhead": 0.13525468129960316,
+    "exact": true
+  },
+  {
+    "L": 557,
+    "bw_beats_per_100": 25,
+    "MBps_at_100MHz": 200,
+    "cycles": 11920696,
+    "compute_cycles": 7741440,
+    "overhead": 0.5398551173941799,
+    "exact": true
+  }
+]

@@ -1,0 +1,165 @@
+{
+  "machine": "arm64 macOS-26.4.1-arm64-arm-64bit",
+  "torch": "2.14.1",
+  "threads": 4,
+  "kernel": [
+    {
+      "L": 109,
+      "device": "cpu",
+      "dtype": "float32",
+      "median_ms": 0.537083500148583,
+      "gflops": 718.2214607100842,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 23.63167400653765
+    },
+    {
+      "L": 109,
+      "device": "mps",
+      "dtype": "float32",
+      "median_ms": 1.4216880003914412,
+      "gflops": 271.32879780499707,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 62.55427201722341
+    },
+    {
+      "L": 109,
+      "device": "mps",
+      "dtype": "float16",
+      "median_ms": 1.5380204999928537,
+      "gflops": 250.80608223478967,
+      "rel_err_vs_fp32_cpu": 0.00035899068461731076,
+      "ms_x44": 67.67290199968556
+    },
+    {
+      "L": 173,
+      "device": "cpu",
+      "dtype": "float32",
+      "median_ms": 0.7410835000882798,
+      "gflops": 826.1380963509088,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 32.60767400388431
+    },
+    {
+      "L": 173,
+      "device": "mps",
+      "dtype": "float32",
+      "median_ms": 2.03979200023241,
+      "gflops": 300.1469325942267,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 89.75084801022604
+    },
+    {
+      "L": 173,
+      "device": "mps",
+      "dtype": "float16",
+      "median_ms": 2.130499999566382,
+      "gflops": 287.3679005513297,
+      "rel_err_vs_fp32_cpu": 0.00035857997136190534,
+      "ms_x44": 93.74199998092081
+    },
+    {
+      "L": 301,
+      "device": "cpu",
+      "dtype": "float32",
+      "median_ms": 1.236853999671439,
+      "gflops": 861.2351532864576,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 54.42157598554331
+    },
+    {
+      "L": 301,
+      "device": "mps",
+      "dtype": "float32",
+      "median_ms": 2.7458329996079556,
+      "gflops": 387.94134390259353,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 120.81665198275005
+    },
+    {
+      "L": 301,
+      "device": "mps",
+      "dtype": "float16",
+      "median_ms": 3.250750499773858,
+      "gflops": 327.68498968902827,
+      "rel_err_vs_fp32_cpu": 0.0003595798625610769,
+      "ms_x44": 143.03302199004975
+    },
+    {
+      "L": 557,
+      "device": "cpu",
+      "dtype": "float32",
+      "median_ms": 2.62235399986821,
+      "gflops": 751.6879140265063,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 115.38357599420124
+    },
+    {
+      "L": 557,
+      "device": "mps",
+      "dtype": "float32",
+      "median_ms": 2.7744999997594277,
+      "gflops": 710.467402476453,
+      "rel_err_vs_fp32_cpu": 0.0,
+      "ms_x44": 122.07799998941482
+    },
+    {
+      "L": 557,
+      "device": "mps",
+      "dtype": "float16",
+      "median_ms": 3.3042290001503716,
+      "gflops": 596.5663420756532,
+      "rel_err_vs_fp32_cpu": 0.0003596197930164635,
+      "ms_x44": 145.38607600661635
+    }
+  ],
+  "e2e": [
+    {
+      "case": "billing_64",
+      "device": "cpu",
+      "median_ms": 98.7066039997444,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_128",
+      "device": "cpu",
+      "median_ms": 128.94643749996249,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_256",
+      "device": "cpu",
+      "median_ms": 222.4538959999336,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_512",
+      "device": "cpu",
+      "median_ms": 460.35029199993005,
+      "choice": "technical"
+    },
+    {
+      "case": "billing_64",
+      "device": "mps",
+      "median_ms": 58.08568700012984,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_128",
+      "device": "mps",
+      "median_ms": 97.2504790001949,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_256",
+      "device": "mps",
+      "median_ms": 146.88568749988917,
+      "choice": "billing"
+    },
+    {
+      "case": "billing_512",
+      "device": "mps",
+      "median_ms": 285.82043699998394,
+      "choice": "technical"
+    }
+  ]
+}

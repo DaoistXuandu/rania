@@ -1,0 +1,3625 @@
+{
+  "config": {
+    "output": "profiling_v2",
+    "lengths": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "repeats": 30,
+    "profile_repeats": 5,
+    "warmup": 5,
+    "sample_ms": 2,
+    "threads": 4,
+    "max_len": 1024
+  },
+  "platform": "macOS-26.4.1-arm64-arm-64bit",
+  "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "memory": {
+    "runtime_import": {
+      "rss_before_mib": 21.046875,
+      "rss_after_mib": 185.515625,
+      "sampled_peak_rss_mib": 185.546875,
+      "process_lifetime_peak_rss_mib": 185.546875,
+      "sampling_interval_ms": 2.0
+    },
+    "model_load": {
+      "rss_before_mib": 185.625,
+      "rss_after_mib": 493.21875,
+      "sampled_peak_rss_mib": 1179.515625,
+      "process_lifetime_peak_rss_mib": 1180.3125,
+      "sampling_interval_ms": 2.0
+    },
+    "first_inference": {
+      "rss_before_mib": 494.09375,
+      "rss_after_mib": 652.625,
+      "sampled_peak_rss_mib": 652.625,
+      "process_lifetime_peak_rss_mib": 1180.3125,
+      "sampling_interval_ms": 2.0
+    }
+  },
+  "cases": [
+    {
+      "id": "billing_64",
+      "text": " Saya melihat dua tagihan untuk pesanan yang sama, padahal hanya membeli satu kali. Pembayaran pertama berhasil dan pesanan sudah dikonfirmasi. Beberapa menit kemudian saldo rekening kembali berkurang dengan nominal yang sama. Mohon periksa kedua transaksi tersebut, batalkan penagihan kedua, dan kembalikan dana ke rekening asal",
+      "expected": "billing",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 88,
+      "warm_memory": {
+        "rss_before_mib": 614.953125,
+        "rss_after_mib": 614.96875,
+        "sampled_peak_rss_mib": 615.0,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 67.22066649854241,
+        "p95_ms": 83.39312500174856,
+        "min_ms": 65.9261670007254,
+        "max_ms": 122.3442080008681,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "billing_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 147.0478479999996,
+          "self_cpu_ms_per_inference": 29.40956959999992,
+          "share_of_aten_self_cpu_pct": 41.266471242299744
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 40.4033429999995,
+          "self_cpu_ms_per_inference": 8.0806685999999,
+          "share_of_aten_self_cpu_pct": 11.338509299382995
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 24.832327999999677,
+          "self_cpu_ms_per_inference": 4.966465599999935,
+          "share_of_aten_self_cpu_pct": 6.968769439531981
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 109, 64], [1, 1, 109, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 13.569620999999888,
+          "self_cpu_ms_per_inference": 2.7139241999999775,
+          "share_of_aten_self_cpu_pct": 3.808082759330172
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 109, 64], [1, 12, 109, 64], [1, 12, 109, 64], [], [], [1, 1, 109, 109], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 12.73988099999913,
+          "self_cpu_ms_per_inference": 2.547976199999826,
+          "share_of_aten_self_cpu_pct": 3.57523037614795
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 12.018355000000128,
+          "self_cpu_ms_per_inference": 2.4036710000000254,
+          "share_of_aten_self_cpu_pct": 3.3727464069195756
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 109, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 10.88925400000008,
+          "self_cpu_ms_per_inference": 2.177850800000016,
+          "share_of_aten_self_cpu_pct": 3.0558834634635517
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::cat",
+          "input_shapes": "[[], []]",
+          "calls": 240,
+          "calls_per_inference": 48.0,
+          "self_cpu_ms": 10.621046000000094,
+          "self_cpu_ms_per_inference": 2.124209200000019,
+          "share_of_aten_self_cpu_pct": 2.9806154614527087
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [109, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 9.662411000000123,
+          "self_cpu_ms_per_inference": 1.9324822000000246,
+          "share_of_aten_self_cpu_pct": 2.71159089429712
+        },
+        {
+          "case": "billing_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 9.556660000000106,
+          "self_cpu_ms_per_inference": 1.9113320000000211,
+          "share_of_aten_self_cpu_pct": 2.681913679297379
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "billing_64",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.0736580000000835,
+          "self_cpu_ms_per_inference": 1.2147316000000168,
+          "share_of_aten_self_cpu_pct": 1.7044685563339077,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "billing_64",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.944697000000044,
+          "self_cpu_ms_per_inference": 1.1889394000000089,
+          "share_of_aten_self_cpu_pct": 1.6682778505856681,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "billing_64",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [109, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.021267000000094,
+          "self_cpu_ms_per_inference": 1.0042534000000187,
+          "share_of_aten_self_cpu_pct": 1.409132966402971,
+          "net_self_tensor_allocation_bytes": 6696960
+        },
+        {
+          "case": "billing_64",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [109, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.641144000000029,
+          "self_cpu_ms_per_inference": 0.9282288000000058,
+          "share_of_aten_self_cpu_pct": 1.3024579278941488,
+          "net_self_tensor_allocation_bytes": 6696960
+        },
+        {
+          "case": "billing_64",
+          "module": "head.layers.0.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 3.799540999999954,
+          "self_cpu_ms_per_inference": 0.7599081999999908,
+          "share_of_aten_self_cpu_pct": 1.0662763960370052,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "billing_64",
+          "module": "encoder.layers.21.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.786543000000107,
+          "self_cpu_ms_per_inference": 0.7573086000000214,
+          "share_of_aten_self_cpu_pct": 1.0626287289647125,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "billing_64",
+          "module": "encoder.layers.20.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.7544179999999616,
+          "self_cpu_ms_per_inference": 0.7508835999999923,
+          "share_of_aten_self_cpu_pct": 1.0536133954749978,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "billing_64",
+          "module": "encoder.layers.20.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.5757929999999325,
+          "self_cpu_ms_per_inference": 0.7151585999999865,
+          "share_of_aten_self_cpu_pct": 1.0034853349429116,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "billing_64",
+          "module": "encoder.layers.21.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.5706709999999586,
+          "self_cpu_ms_per_inference": 0.7141341999999917,
+          "share_of_aten_self_cpu_pct": 1.0020479329776548,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "billing_64",
+          "module": "encoder.layers.9.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.551128999999979,
+          "self_cpu_ms_per_inference": 0.7102257999999958,
+          "share_of_aten_self_cpu_pct": 0.9965638038864478,
+          "net_self_tensor_allocation_bytes": 5022720
+        }
+      ]
+    },
+    {
+      "id": "technical_64",
+      "text": " Aplikasi langsung menutup sendiri setiap kali saya membuka halaman pengaturan akun. Halaman utama masih bisa dibuka, tetapi masalah selalu muncul setelah tombol pengaturan ditekan. Saya sudah mencoba memulai ulang ponsel dan memperbarui aplikasi, namun hasilnya tetap sama. Mohon bantu memeriksa penyebab gangguan dan memberikan langkah perbaikan supaya saya dapat mengubah pengaturan akun. Masalah ini",
+      "expected": "technical",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 80,
+      "warm_memory": {
+        "rss_before_mib": 595.265625,
+        "rss_after_mib": 595.28125,
+        "sampled_peak_rss_mib": 595.3125,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 75.84618799955933,
+        "p95_ms": 79.37104200027534,
+        "min_ms": 66.59929200031911,
+        "max_ms": 84.52345900150249,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "technical_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 147.6924059999993,
+          "self_cpu_ms_per_inference": 29.538481199999858,
+          "share_of_aten_self_cpu_pct": 41.10640599627292
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 41.01332500000028,
+          "self_cpu_ms_per_inference": 8.202665000000056,
+          "share_of_aten_self_cpu_pct": 11.415010658754586
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 24.752535999999818,
+          "self_cpu_ms_per_inference": 4.950507199999963,
+          "share_of_aten_self_cpu_pct": 6.889235687942945
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 109, 64], [1, 1, 109, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 14.070438000000063,
+          "self_cpu_ms_per_inference": 2.8140876000000126,
+          "share_of_aten_self_cpu_pct": 3.9161467582388196
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 109, 64], [1, 12, 109, 64], [1, 12, 109, 64], [], [], [1, 1, 109, 109], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 12.917622000000202,
+          "self_cpu_ms_per_inference": 2.5835244000000404,
+          "share_of_aten_self_cpu_pct": 3.595289892145151
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 11.875029000000213,
+          "self_cpu_ms_per_inference": 2.3750058000000425,
+          "share_of_aten_self_cpu_pct": 3.305110780655343
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 109, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 11.243464999999752,
+          "self_cpu_ms_per_inference": 2.2486929999999505,
+          "share_of_aten_self_cpu_pct": 3.1293310848688907
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::cat",
+          "input_shapes": "[[], []]",
+          "calls": 240,
+          "calls_per_inference": 48.0,
+          "self_cpu_ms": 11.083219999999914,
+          "self_cpu_ms_per_inference": 2.2166439999999827,
+          "share_of_aten_self_cpu_pct": 3.0847309851937164
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::native_layer_norm",
+          "input_shapes": "[[1, 109, 768], [], [768], [], []]",
+          "calls": 225,
+          "calls_per_inference": 45.0,
+          "self_cpu_ms": 9.837541000000103,
+          "self_cpu_ms_per_inference": 1.9675082000000206,
+          "share_of_aten_self_cpu_pct": 2.7380280767515375
+        },
+        {
+          "case": "technical_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 9.55091800000047,
+          "self_cpu_ms_per_inference": 1.910183600000094,
+          "share_of_aten_self_cpu_pct": 2.658253891165753
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "technical_64",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.994701000000161,
+          "self_cpu_ms_per_inference": 1.1989402000000322,
+          "share_of_aten_self_cpu_pct": 1.6684717908398827,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "technical_64",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.880328000000052,
+          "self_cpu_ms_per_inference": 1.1760656000000105,
+          "share_of_aten_self_cpu_pct": 1.63663898981546,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "technical_64",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [109, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.751227000000057,
+          "self_cpu_ms_per_inference": 0.9502454000000113,
+          "share_of_aten_self_cpu_pct": 1.3223825877848931,
+          "net_self_tensor_allocation_bytes": 6696960
+        },
+        {
+          "case": "technical_64",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [109, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.729104000000094,
+          "self_cpu_ms_per_inference": 0.9458208000000188,
+          "share_of_aten_self_cpu_pct": 1.3162252162281318,
+          "net_self_tensor_allocation_bytes": 6696960
+        },
+        {
+          "case": "technical_64",
+          "module": "encoder.layers.16.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.077823000000026,
+          "self_cpu_ms_per_inference": 0.8155646000000052,
+          "share_of_aten_self_cpu_pct": 1.1349577974844656,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "technical_64",
+          "module": "encoder.layers.15.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.9687449999999735,
+          "self_cpu_ms_per_inference": 0.7937489999999947,
+          "share_of_aten_self_cpu_pct": 1.1045987243628346,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "technical_64",
+          "module": "encoder.layers.16.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.8422860000001093,
+          "self_cpu_ms_per_inference": 0.7684572000000218,
+          "share_of_aten_self_cpu_pct": 1.0694020941726734,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "technical_64",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 3.834668000000078,
+          "self_cpu_ms_per_inference": 0.7669336000000155,
+          "share_of_aten_self_cpu_pct": 1.0672818185988509,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "technical_64",
+          "module": "encoder.layers.17.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.7942089999999298,
+          "self_cpu_ms_per_inference": 0.7588417999999859,
+          "share_of_aten_self_cpu_pct": 1.0560210901345226,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "technical_64",
+          "module": "encoder.layers.17.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 3.604251999999928,
+          "self_cpu_ms_per_inference": 0.7208503999999856,
+          "share_of_aten_self_cpu_pct": 1.00315141473744,
+          "net_self_tensor_allocation_bytes": 5022720
+        }
+      ]
+    },
+    {
+      "id": "other_64",
+      "text": " Saya ingin mengetahui jam operasional kantor layanan pada hari Sabtu dan apakah pengunjung perlu membuat janji terlebih dahulu. Rencananya saya datang untuk meminta informasi tentang program pelatihan yang tersedia bulan depan. Mohon kirimkan alamat kantor, petunjuk menuju lokasi, dan daftar dokumen yang perlu dibawa. Saya belum melakukan pembelian atau pembayaran apa pun",
+      "expected": "other",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 76,
+      "warm_memory": {
+        "rss_before_mib": 555.359375,
+        "rss_after_mib": 555.203125,
+        "sampled_peak_rss_mib": 555.875,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 71.6322290008975,
+        "p95_ms": 122.34004200217896,
+        "min_ms": 65.37300000127289,
+        "max_ms": 139.74879200031864,
+        "correct_repeated_predictions": 0,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                109
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "other_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 255.6937879999998,
+          "self_cpu_ms_per_inference": 51.13875759999996,
+          "share_of_aten_self_cpu_pct": 49.22251770096855
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 45.69561500000039,
+          "self_cpu_ms_per_inference": 9.139123000000078,
+          "share_of_aten_self_cpu_pct": 8.796667434854399
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 29.925464999999136,
+          "self_cpu_ms_per_inference": 5.985092999999827,
+          "share_of_aten_self_cpu_pct": 5.760823296466528
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 109, 64], [1, 1, 109, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 18.37584300000009,
+          "self_cpu_ms_per_inference": 3.675168600000018,
+          "share_of_aten_self_cpu_pct": 3.5374549550563352
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 109, 64], [1, 12, 109, 64], [1, 12, 109, 64], [], [], [1, 1, 109, 109], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 17.13567700000047,
+          "self_cpu_ms_per_inference": 3.427135400000094,
+          "share_of_aten_self_cpu_pct": 3.29871590173557
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::add",
+          "input_shapes": "[[1, 109, 768], [1, 109, 768], []]",
+          "calls": 240,
+          "calls_per_inference": 48.0,
+          "self_cpu_ms": 14.496763000000572,
+          "self_cpu_ms_per_inference": 2.8993526000001144,
+          "share_of_aten_self_cpu_pct": 2.7907098524203273
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::neg",
+          "input_shapes": "[[1, 12, 109, 32]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 13.48991300000055,
+          "self_cpu_ms_per_inference": 2.69798260000011,
+          "share_of_aten_self_cpu_pct": 2.5968854645270185
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 12.326769999999787,
+          "self_cpu_ms_per_inference": 2.4653539999999574,
+          "share_of_aten_self_cpu_pct": 2.3729737795615042
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 109, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 12.008353000000243,
+          "self_cpu_ms_per_inference": 2.4016706000000485,
+          "share_of_aten_self_cpu_pct": 2.31167668454265
+        },
+        {
+          "case": "other_64",
+          "operation": "aten::cat",
+          "input_shapes": "[[], []]",
+          "calls": 240,
+          "calls_per_inference": 48.0,
+          "self_cpu_ms": 11.908514000000288,
+          "self_cpu_ms_per_inference": 2.3817028000000575,
+          "share_of_aten_self_cpu_pct": 2.292457105595566
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "other_64",
+          "module": "encoder.layers.5.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 88.06537700000004,
+          "self_cpu_ms_per_inference": 17.613075400000007,
+          "share_of_aten_self_cpu_pct": 16.95308913107022,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.13.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.322711999999999,
+          "self_cpu_ms_per_inference": 1.4645423999999998,
+          "share_of_aten_self_cpu_pct": 1.409663972904555,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.245237999999954,
+          "self_cpu_ms_per_inference": 1.2490475999999908,
+          "share_of_aten_self_cpu_pct": 1.2022440607816385,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.4",
+          "operation": "aten::add",
+          "input_shapes": "[[1, 109, 768], [1, 109, 768], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 6.134780000000057,
+          "self_cpu_ms_per_inference": 1.2269560000000115,
+          "share_of_aten_self_cpu_pct": 1.180980263554744,
+          "net_self_tensor_allocation_bytes": 3348480
+        },
+        {
+          "case": "other_64",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [109, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.081531999999832,
+          "self_cpu_ms_per_inference": 1.2163063999999664,
+          "share_of_aten_self_cpu_pct": 1.1707297187798658,
+          "net_self_tensor_allocation_bytes": 1674240
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.12.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.5697920000001035,
+          "self_cpu_ms_per_inference": 1.1139584000000207,
+          "share_of_aten_self_cpu_pct": 1.0722168397408165,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.13.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.123344000000128,
+          "self_cpu_ms_per_inference": 1.0246688000000257,
+          "share_of_aten_self_cpu_pct": 0.9862730444126296,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.8.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.0861369999999875,
+          "self_cpu_ms_per_inference": 1.0172273999999975,
+          "share_of_aten_self_cpu_pct": 0.9791104839514156,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.2.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.925642000000007,
+          "self_cpu_ms_per_inference": 0.9851284000000013,
+          "share_of_aten_self_cpu_pct": 0.948214277828426,
+          "net_self_tensor_allocation_bytes": 5022720
+        },
+        {
+          "case": "other_64",
+          "module": "encoder.layers.12.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[109, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.895848999999871,
+          "self_cpu_ms_per_inference": 0.9791697999999742,
+          "share_of_aten_self_cpu_pct": 0.9424789548026212,
+          "net_self_tensor_allocation_bytes": 5022720
+        }
+      ]
+    },
+    {
+      "id": "billing_128",
+      "text": " Langganan saya sudah dibatalkan sebelum tanggal perpanjangan, tetapi kartu saya tetap dikenai biaya untuk periode berikutnya. Saya meminta pengembalian biaya tersebut dan konfirmasi bahwa penagihan otomatis sudah dihentikan. Pembatalan dilakukan melalui halaman akun, kemudian saya menerima surel yang menyatakan bahwa paket tidak akan diperpanjang. Tanggal pada surel tersebut lebih awal daripada tanggal transaksi yang sekarang muncul pada laporan kartu. Saya tidak memilih paket baru dan tidak memberikan persetujuan untuk mengaktifkan kembali langganan. Nominal transaksi sesuai dengan harga paket bulanan sebelumnya. Saya sudah menyimpan bukti pembatalan, nomor pelanggan, dan rincian pembayaran. Moh",
+      "expected": "billing",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 197,
+      "warm_memory": {
+        "rss_before_mib": 564.0625,
+        "rss_after_mib": 564.09375,
+        "sampled_peak_rss_mib": 564.125,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 91.91429149905161,
+        "p95_ms": 109.44424999979674,
+        "min_ms": 88.75212500061025,
+        "max_ms": 111.99508299978334,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "billing_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 177.33645700000014,
+          "self_cpu_ms_per_inference": 35.46729140000003,
+          "share_of_aten_self_cpu_pct": 40.530161791895125
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 48.84520500000112,
+          "self_cpu_ms_per_inference": 9.769041000000225,
+          "share_of_aten_self_cpu_pct": 11.1635480650678
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 29.65485000000023,
+          "self_cpu_ms_per_inference": 5.9309700000000465,
+          "share_of_aten_self_cpu_pct": 6.777601677326788
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [1, 1, 173, 173], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 25.019511000000147,
+          "self_cpu_ms_per_inference": 5.003902200000029,
+          "share_of_aten_self_cpu_pct": 5.718197182568641
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 173, 64], [1, 1, 173, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 15.26474500000018,
+          "self_cpu_ms_per_inference": 3.0529490000000363,
+          "share_of_aten_self_cpu_pct": 3.488750113926259
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 14.964576000000015,
+          "self_cpu_ms_per_inference": 2.992915200000003,
+          "share_of_aten_self_cpu_pct": 3.420146633622611
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 173, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 13.791609000000228,
+          "self_cpu_ms_per_inference": 2.758321800000046,
+          "share_of_aten_self_cpu_pct": 3.1520655910057225
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 12.675961999999945,
+          "self_cpu_ms_per_inference": 2.535192399999989,
+          "share_of_aten_self_cpu_pct": 2.8970850067671745
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 12.525843000000009,
+          "self_cpu_ms_per_inference": 2.505168600000002,
+          "share_of_aten_self_cpu_pct": 2.86277538165701
+        },
+        {
+          "case": "billing_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 11.52336199999963,
+          "self_cpu_ms_per_inference": 2.3046723999999257,
+          "share_of_aten_self_cpu_pct": 2.6336588321856507
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "billing_128",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.603451000000044,
+          "self_cpu_ms_per_inference": 1.5206902000000089,
+          "share_of_aten_self_cpu_pct": 1.737765062074903,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "billing_128",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.361124999999971,
+          "self_cpu_ms_per_inference": 1.4722249999999941,
+          "share_of_aten_self_cpu_pct": 1.6823815715477082,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "billing_128",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.2774839999999825,
+          "self_cpu_ms_per_inference": 1.2554967999999964,
+          "share_of_aten_self_cpu_pct": 1.4347159431860763,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "billing_128",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.2483590000000255,
+          "self_cpu_ms_per_inference": 1.249671800000005,
+          "share_of_aten_self_cpu_pct": 1.4280594384709338,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "billing_128",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.33869499999992,
+          "self_cpu_ms_per_inference": 0.8677389999999839,
+          "share_of_aten_self_cpu_pct": 0.9916066515058606,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "billing_128",
+          "module": "encoder.layers.21.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.281945999999836,
+          "self_cpu_ms_per_inference": 0.8563891999999672,
+          "share_of_aten_self_cpu_pct": 0.9786366949022298,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "billing_128",
+          "module": "head.layers.0.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.276606999999815,
+          "self_cpu_ms_per_inference": 0.8553213999999629,
+          "share_of_aten_self_cpu_pct": 0.9774164690249991,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "billing_128",
+          "module": "encoder.layers.17.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.266822000000058,
+          "self_cpu_ms_per_inference": 0.8533644000000116,
+          "share_of_aten_self_cpu_pct": 0.9751801119902818,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "billing_128",
+          "module": "encoder.layers.16.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.2648220000000805,
+          "self_cpu_ms_per_inference": 0.852964400000016,
+          "share_of_aten_self_cpu_pct": 0.9747230129540531,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "billing_128",
+          "module": "encoder.layers.18.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.211407999999923,
+          "self_cpu_ms_per_inference": 0.8422815999999846,
+          "share_of_aten_self_cpu_pct": 0.9625152689933251,
+          "net_self_tensor_allocation_bytes": 7971840
+        }
+      ]
+    },
+    {
+      "id": "technical_128",
+      "text": " Saya tidak dapat masuk ke akun karena halaman autentikasi terus kembali ke formulir awal setelah kata sandi dimasukkan. Mohon bantu memperbaiki masalah login tersebut. Kata sandi sudah saya atur ulang melalui tautan resmi dan perubahan berhasil dikonfirmasi. Saat kata sandi baru digunakan, tidak ada pemberitahuan bahwa kredensial salah, tetapi halaman hanya memuat sebentar lalu meminta saya mengisi data lagi. Masalah yang sama terjadi pada dua peramban dan juga setelah cache dibersihkan. Koneksi internet normal dan situs lain dapat dibuka. Saya menggunakan perangkat yang sebelumnya rutin dipakai untuk mengakses akun ini. Tidak ada perubahan alamat surel maupun nomor",
+      "expected": "technical",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 196,
+      "warm_memory": {
+        "rss_before_mib": 564.1875,
+        "rss_after_mib": 563.34375,
+        "sampled_peak_rss_mib": 564.21875,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 90.6089374984731,
+        "p95_ms": 99.42862499883631,
+        "min_ms": 87.47329199832166,
+        "max_ms": 99.48762500062003,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "technical_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 174.5189779999984,
+          "self_cpu_ms_per_inference": 34.90379559999968,
+          "share_of_aten_self_cpu_pct": 40.95484148456826
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 47.633956000000175,
+          "self_cpu_ms_per_inference": 9.526791200000035,
+          "share_of_aten_self_cpu_pct": 11.178389534592192
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 29.376242999999644,
+          "self_cpu_ms_per_inference": 5.875248599999929,
+          "share_of_aten_self_cpu_pct": 6.89380254952647
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [1, 1, 173, 173], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 24.455176999999875,
+          "self_cpu_ms_per_inference": 4.891035399999975,
+          "share_of_aten_self_cpu_pct": 5.738962656038839
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 173, 64], [1, 1, 173, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 14.811748999999681,
+          "self_cpu_ms_per_inference": 2.962349799999936,
+          "share_of_aten_self_cpu_pct": 3.475913275198097
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 14.335134000000092,
+          "self_cpu_ms_per_inference": 2.8670268000000183,
+          "share_of_aten_self_cpu_pct": 3.364064741601077
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 173, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 13.397815999999773,
+          "self_cpu_ms_per_inference": 2.6795631999999547,
+          "share_of_aten_self_cpu_pct": 3.144101786565632
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 12.076612999999929,
+          "self_cpu_ms_per_inference": 2.415322599999986,
+          "share_of_aten_self_cpu_pct": 2.8340514983160046
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 11.941975000000006,
+          "self_cpu_ms_per_inference": 2.3883950000000014,
+          "share_of_aten_self_cpu_pct": 2.80245563400951
+        },
+        {
+          "case": "technical_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 11.059499999999462,
+          "self_cpu_ms_per_inference": 2.2118999999998925,
+          "share_of_aten_self_cpu_pct": 2.5953628343993898
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "technical_128",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.1986290000001025,
+          "self_cpu_ms_per_inference": 1.4397258000000206,
+          "share_of_aten_self_cpu_pct": 1.6893217745133884,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "technical_128",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.13650499999999,
+          "self_cpu_ms_per_inference": 1.427300999999998,
+          "share_of_aten_self_cpu_pct": 1.6747429670876885,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "technical_128",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.987943999999988,
+          "self_cpu_ms_per_inference": 1.1975887999999977,
+          "share_of_aten_self_cpu_pct": 1.4052070448090372,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "technical_128",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 5.954031000000017,
+          "self_cpu_ms_per_inference": 1.1908062000000035,
+          "share_of_aten_self_cpu_pct": 1.397248589200473,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "technical_128",
+          "module": "head.layers.0.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.1532399999999035,
+          "self_cpu_ms_per_inference": 0.8306479999999807,
+          "share_of_aten_self_cpu_pct": 0.9746520853873317,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "technical_128",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.147319999999803,
+          "self_cpu_ms_per_inference": 0.8294639999999607,
+          "share_of_aten_self_cpu_pct": 0.9732628229450961,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "technical_128",
+          "module": "encoder.layers.0.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.090865000000009,
+          "self_cpu_ms_per_inference": 0.8181730000000018,
+          "share_of_aten_self_cpu_pct": 0.960014375111515,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "technical_128",
+          "module": "encoder.layers.3.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.085656999999859,
+          "self_cpu_ms_per_inference": 0.8171313999999719,
+          "share_of_aten_self_cpu_pct": 0.9587921996386689,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "technical_128",
+          "module": "encoder.layers.4.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.039657999999963,
+          "self_cpu_ms_per_inference": 0.8079315999999925,
+          "share_of_aten_self_cpu_pct": 0.947997489659079,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "technical_128",
+          "module": "encoder.layers.17.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.025488999999958,
+          "self_cpu_ms_per_inference": 0.8050977999999915,
+          "share_of_aten_self_cpu_pct": 0.9446724120334522,
+          "net_self_tensor_allocation_bytes": 7971840
+        }
+      ]
+    },
+    {
+      "id": "other_128",
+      "text": " Saya ingin meminta informasi mengenai kerja sama penyelenggaraan pelatihan untuk komunitas kami. Mohon arahkan permintaan ini kepada tim yang menangani program kemitraan. Peserta yang kami rencanakan berjumlah sekitar dua puluh orang dengan latar belakang usaha kecil. Topik yang dibutuhkan adalah pengenalan layanan, pengelolaan dokumen, dan prosedur pendaftaran. Kami belum menentukan tanggal karena ingin menyesuaikan jadwal narasumber. Kegiatan dapat dilaksanakan secara daring atau di ruang pertemuan komunitas, bergantung pada ketersediaan tim. Saya ingin mengetahui apakah ada persyaratan jumlah peserta, batas usia, atau dokumen pengajuan yang harus dipenuhi. Jika tersedia, mohon kirimkan profil program",
+      "expected": "other",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 197,
+      "warm_memory": {
+        "rss_before_mib": 564.5,
+        "rss_after_mib": 569.140625,
+        "sampled_peak_rss_mib": 569.171875,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 88.12218799903349,
+        "p95_ms": 119.47154199879151,
+        "min_ms": 87.10041599988472,
+        "max_ms": 126.91829200048232,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                173
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "other_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 185.2205789999992,
+          "self_cpu_ms_per_inference": 37.04411579999984,
+          "share_of_aten_self_cpu_pct": 40.45544577512552
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 50.516109999999614,
+          "self_cpu_ms_per_inference": 10.103221999999922,
+          "share_of_aten_self_cpu_pct": 11.03361062744151
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 30.90692800000053,
+          "self_cpu_ms_per_inference": 6.181385600000106,
+          "share_of_aten_self_cpu_pct": 6.750618945963537
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [1, 1, 173, 173], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 28.474039999999086,
+          "self_cpu_ms_per_inference": 5.694807999999817,
+          "share_of_aten_self_cpu_pct": 6.219233237677784
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 173, 64], [1, 1, 173, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 16.389880000000215,
+          "self_cpu_ms_per_inference": 3.277976000000043,
+          "share_of_aten_self_cpu_pct": 3.579839266136978
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 14.671258999999875,
+          "self_cpu_ms_per_inference": 2.934251799999975,
+          "share_of_aten_self_cpu_pct": 3.204462085864227
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 173, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 14.365716000000019,
+          "self_cpu_ms_per_inference": 2.873143200000004,
+          "share_of_aten_self_cpu_pct": 3.1377260982369366
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 173, 64], [1, 12, 173, 64], [1, 12, 173, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 13.788332999999952,
+          "self_cpu_ms_per_inference": 2.7576665999999905,
+          "share_of_aten_self_cpu_pct": 3.0116154534365998
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 12.454931999999811,
+          "self_cpu_ms_per_inference": 2.4909863999999624,
+          "share_of_aten_self_cpu_pct": 2.720377124827314
+        },
+        {
+          "case": "other_128",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 12.043399999999512,
+          "self_cpu_ms_per_inference": 2.4086799999999022,
+          "share_of_aten_self_cpu_pct": 2.630491267647583
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "other_128",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.392294999999838,
+          "self_cpu_ms_per_inference": 1.4784589999999675,
+          "share_of_aten_self_cpu_pct": 1.6146077889445876,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "other_128",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.278964000000037,
+          "self_cpu_ms_per_inference": 1.4557928000000073,
+          "share_of_aten_self_cpu_pct": 1.5898542969196394,
+          "net_self_tensor_allocation_bytes": 2657280
+        },
+        {
+          "case": "other_128",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.329858999999852,
+          "self_cpu_ms_per_inference": 1.2659717999999702,
+          "share_of_aten_self_cpu_pct": 1.3825530020542987,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "other_128",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [173, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.1250729999999605,
+          "self_cpu_ms_per_inference": 1.2250145999999922,
+          "share_of_aten_self_cpu_pct": 1.337824122773015,
+          "net_self_tensor_allocation_bytes": 10629120
+        },
+        {
+          "case": "other_128",
+          "module": "head.layers.0.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.604725999999966,
+          "self_cpu_ms_per_inference": 0.9209451999999931,
+          "share_of_aten_self_cpu_pct": 1.0057534859682633,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "other_128",
+          "module": "encoder.layers.18.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.544602999999901,
+          "self_cpu_ms_per_inference": 0.9089205999999802,
+          "share_of_aten_self_cpu_pct": 0.9926215608902161,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "other_128",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [173, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 4.475234999999709,
+          "self_cpu_ms_per_inference": 0.8950469999999419,
+          "share_of_aten_self_cpu_pct": 0.9774703645291646,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "other_128",
+          "module": "encoder.layers.2.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.360443999999945,
+          "self_cpu_ms_per_inference": 0.872088799999989,
+          "share_of_aten_self_cpu_pct": 0.9523979827180543,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "other_128",
+          "module": "encoder.layers.4.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.345279999999973,
+          "self_cpu_ms_per_inference": 0.8690559999999946,
+          "share_of_aten_self_cpu_pct": 0.9490858972951226,
+          "net_self_tensor_allocation_bytes": 7971840
+        },
+        {
+          "case": "other_128",
+          "module": "encoder.layers.17.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[173, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 4.299277999999889,
+          "self_cpu_ms_per_inference": 0.8598555999999778,
+          "share_of_aten_self_cpu_pct": 0.9390382480187929,
+          "net_self_tensor_allocation_bytes": 7971840
+        }
+      ]
+    },
+    {
+      "id": "billing_256",
+      "text": " Nominal pada faktur bulan ini tidak sesuai dengan kesepakatan harga dalam kontrak. Saya meminta pemeriksaan rincian biaya dan penerbitan faktur yang sudah diperbaiki sebelum pembayaran dilakukan. Paket yang kami gunakan memiliki tarif tetap dengan jumlah pengguna yang telah disepakati. Namun faktur terbaru mencantumkan tambahan biaya pengguna dan layanan pendamping yang tidak pernah kami pesan. Tidak ada perubahan paket yang diajukan oleh pengelola akun perusahaan. Kami juga tidak menerima pemberitahuan atau persetujuan tertulis mengenai penambahan layanan. Saya sudah membandingkan faktur terbaru dengan faktur dua bulan sebelumnya. Biaya utama tetap sama, sementara selisih muncul pada dua baris tambahan yang belum memiliki penjelasan. Nama perusahaan dan nomor pelanggan pada faktur sudah benar, sehingga dokumen tersebut memang ditujukan kepada akun kami. Bagian keuangan belum memproses pembayaran karena perlu memastikan bahwa nominal sesuai dengan dokumen kontrak. Mohon periksa tanggal mulai layanan tambahan, siapa yang menyetujuinya, dan dasar perhitungan jumlah pengguna. Apabila pencatatan tersebut merupakan kesalahan, tolong hapus biaya tambahan dan kirim faktur pengganti dengan nomor referensi yang dapat ditelusuri. Kami membutuhkan dokumen koreksi untuk melengkapi arsip pembayaran dan proses persetujuan internal. Jika ternyata ada perubahan tarif yang berlaku, mohon sertakan pemberitah",
+      "expected": "billing",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 363,
+      "warm_memory": {
+        "rss_before_mib": 578.71875,
+        "rss_after_mib": 579.09375,
+        "sampled_peak_rss_mib": 579.09375,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 141.55168750039593,
+        "p95_ms": 159.14270899884286,
+        "min_ms": 136.49712500046007,
+        "max_ms": 171.85512500145705,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "billing_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 275.5524389999991,
+          "self_cpu_ms_per_inference": 55.11048779999982,
+          "share_of_aten_self_cpu_pct": 38.68341239803752
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 73.53076800000005,
+          "self_cpu_ms_per_inference": 14.706153600000011,
+          "share_of_aten_self_cpu_pct": 10.32261239570604
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [1, 1, 301, 301], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 70.90230599999867,
+          "self_cpu_ms_per_inference": 14.180461199999735,
+          "share_of_aten_self_cpu_pct": 9.953615917621429
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 47.44024100000026,
+          "self_cpu_ms_per_inference": 9.488048200000053,
+          "share_of_aten_self_cpu_pct": 6.659895348867895
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 33.58928899999987,
+          "self_cpu_ms_per_inference": 6.717857799999974,
+          "share_of_aten_self_cpu_pct": 4.71543029435448
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 301, 64], [1, 1, 301, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 23.728296000000135,
+          "self_cpu_ms_per_inference": 4.745659200000027,
+          "share_of_aten_self_cpu_pct": 3.331095391504454
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 301, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 21.269773999999767,
+          "self_cpu_ms_per_inference": 4.253954799999954,
+          "share_of_aten_self_cpu_pct": 2.9859559299892457
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 18.772618999999978,
+          "self_cpu_ms_per_inference": 3.7545237999999954,
+          "share_of_aten_self_cpu_pct": 2.635392977117638
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 18.320890000000276,
+          "self_cpu_ms_per_inference": 3.6641780000000552,
+          "share_of_aten_self_cpu_pct": 2.5719770289135226
+        },
+        {
+          "case": "billing_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 16.71202900000004,
+          "self_cpu_ms_per_inference": 3.342405800000008,
+          "share_of_aten_self_cpu_pct": 2.3461171752319934
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "billing_256",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.632657999999909,
+          "self_cpu_ms_per_inference": 1.9265315999999817,
+          "share_of_aten_self_cpu_pct": 1.352280107755653,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "billing_256",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.2587129999999,
+          "self_cpu_ms_per_inference": 1.8517425999999801,
+          "share_of_aten_self_cpu_pct": 1.2997838616629647,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "billing_256",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.139961000000069,
+          "self_cpu_ms_per_inference": 1.8279922000000137,
+          "share_of_aten_self_cpu_pct": 1.2831128693619847,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "billing_256",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.062177000000375,
+          "self_cpu_ms_per_inference": 1.812435400000075,
+          "share_of_aten_self_cpu_pct": 1.2721931672505578,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.5.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 8.196526999999936,
+          "self_cpu_ms_per_inference": 1.6393053999999871,
+          "share_of_aten_self_cpu_pct": 1.1506689446238139,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.13.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 7.568748999999967,
+          "self_cpu_ms_per_inference": 1.5137497999999934,
+          "share_of_aten_self_cpu_pct": 1.0625383682567724,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.9.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.8917240000001545,
+          "self_cpu_ms_per_inference": 1.378344800000031,
+          "share_of_aten_self_cpu_pct": 0.9674942547885037,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.10.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.737097000000038,
+          "self_cpu_ms_per_inference": 1.3474194000000075,
+          "share_of_aten_self_cpu_pct": 0.9457869527933437,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.13.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.733558999999993,
+          "self_cpu_ms_per_inference": 1.3467117999999987,
+          "share_of_aten_self_cpu_pct": 0.9452902708784143,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "billing_256",
+          "module": "encoder.layers.6.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.67239299999988,
+          "self_cpu_ms_per_inference": 1.334478599999976,
+          "share_of_aten_self_cpu_pct": 0.9367034856867116,
+          "net_self_tensor_allocation_bytes": 13870080
+        }
+      ]
+    },
+    {
+      "id": "technical_256",
+      "text": " Dokumen yang diunggah melalui portal tidak muncul dalam daftar berkas meskipun indikator unggahan menyatakan selesai. Saya membutuhkan bantuan untuk memeriksa proses penyimpanan dan memperbaiki gangguan tersebut. Kejadian ini berlangsung saat saya mengirim beberapa berkas PDF untuk melengkapi pengajuan. Setiap berkas berukuran kecil dan sesuai dengan jenis dokumen yang diperbolehkan. Setelah memilih berkas, indikator kemajuan mencapai akhir dan halaman menampilkan pemberitahuan berhasil. Namun ketika daftar dokumen dimuat kembali, nama berkas tidak ditemukan. Saya sudah mencoba keluar lalu masuk kembali, tetapi daftar tetap tidak berubah. Mengunggah satu berkas saja menghasilkan masalah yang sama. Tidak ada pesan yang menyatakan kuota penyimpanan habis atau format ditolak. Saya memeriksa koneksi internet dan mencoba jaringan lain untuk memastikan gangguan bukan berasal dari sambungan lokal. Rekan saya dapat membuka portal, tetapi pengunggahan pada akun saya tetap tidak tersimpan. Saya belum mengulangi unggahan berkali-kali karena khawatir berkas sebenarnya tersimpan di belakang layar dan akan menjadi duplikat. Mohon periksa log permintaan pada waktu kejadian, status penyimpanan berkas, serta hubungan berkas dengan nomor pengajuan. Jika berkas sudah tersimpan, tolong pulihkan tampilannya pada daftar dokumen. Jika penyimpanan gagal, mohon berikan langkah pengunggahan ulang",
+      "expected": "technical",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 344,
+      "warm_memory": {
+        "rss_before_mib": 583.078125,
+        "rss_after_mib": 582.90625,
+        "sampled_peak_rss_mib": 583.125,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 139.58254200042575,
+        "p95_ms": 158.3520829990448,
+        "min_ms": 134.85666600172408,
+        "max_ms": 177.63529200237826,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "technical_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 267.9496719999995,
+          "self_cpu_ms_per_inference": 53.589934399999905,
+          "share_of_aten_self_cpu_pct": 39.65568311233432
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 72.63465400000031,
+          "self_cpu_ms_per_inference": 14.526930800000063,
+          "share_of_aten_self_cpu_pct": 10.749693405103567
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [1, 1, 301, 301], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 65.11838100000051,
+          "self_cpu_ms_per_inference": 13.023676200000102,
+          "share_of_aten_self_cpu_pct": 9.637309359066046
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 44.06089599999885,
+          "self_cpu_ms_per_inference": 8.81217919999977,
+          "share_of_aten_self_cpu_pct": 6.520869819991705
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 29.391093000000346,
+          "self_cpu_ms_per_inference": 5.87821860000007,
+          "share_of_aten_self_cpu_pct": 4.349786516376714
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 301, 64], [1, 1, 301, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 21.341818000000014,
+          "self_cpu_ms_per_inference": 4.2683636000000025,
+          "share_of_aten_self_cpu_pct": 3.1585199016370313
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 301, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 18.702536000000137,
+          "self_cpu_ms_per_inference": 3.7405072000000272,
+          "share_of_aten_self_cpu_pct": 2.767914718749987
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 18.623961999999914,
+          "self_cpu_ms_per_inference": 3.724792399999983,
+          "share_of_aten_self_cpu_pct": 2.7562860213844713
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 18.484629000000044,
+          "self_cpu_ms_per_inference": 3.6969258000000087,
+          "share_of_aten_self_cpu_pct": 2.7356651889205086
+        },
+        {
+          "case": "technical_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 16.757038999999963,
+          "self_cpu_ms_per_inference": 3.3514077999999925,
+          "share_of_aten_self_cpu_pct": 2.4799874675160165
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "technical_256",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.424414999999978,
+          "self_cpu_ms_per_inference": 1.8848829999999956,
+          "share_of_aten_self_cpu_pct": 1.394782878327726,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "technical_256",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.31866700000022,
+          "self_cpu_ms_per_inference": 1.863733400000044,
+          "share_of_aten_self_cpu_pct": 1.379132517024975,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "technical_256",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.199546999999933,
+          "self_cpu_ms_per_inference": 1.8399093999999867,
+          "share_of_aten_self_cpu_pct": 1.361503143056745,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "technical_256",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.165961999999825,
+          "self_cpu_ms_per_inference": 1.8331923999999649,
+          "share_of_aten_self_cpu_pct": 1.3565326718955335,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "technical_256",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 6.353599999999977,
+          "self_cpu_ms_per_inference": 1.2707199999999954,
+          "share_of_aten_self_cpu_pct": 0.9403122099083103,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "technical_256",
+          "module": "encoder.layers.17.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.31490099999978,
+          "self_cpu_ms_per_inference": 1.262980199999956,
+          "share_of_aten_self_cpu_pct": 0.9345848833200097,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "technical_256",
+          "module": "encoder.layers.11.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.278820000000123,
+          "self_cpu_ms_per_inference": 1.2557640000000245,
+          "share_of_aten_self_cpu_pct": 0.9292450122476444,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "technical_256",
+          "module": "encoder.layers.8.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.268610000000146,
+          "self_cpu_ms_per_inference": 1.2537220000000293,
+          "share_of_aten_self_cpu_pct": 0.9277339653351631,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "technical_256",
+          "module": "head.layers.0.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 6.260861999999994,
+          "self_cpu_ms_per_inference": 1.2521723999999987,
+          "share_of_aten_self_cpu_pct": 0.9265872864440599,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "technical_256",
+          "module": "encoder.layers.10.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.227112000000124,
+          "self_cpu_ms_per_inference": 1.245422400000025,
+          "share_of_aten_self_cpu_pct": 0.9215923958175989,
+          "net_self_tensor_allocation_bytes": 13870080
+        }
+      ]
+    },
+    {
+      "id": "other_256",
+      "text": " Saya ingin mengajukan permintaan perubahan alamat korespondensi perusahaan dan mengetahui dokumen administrasi yang diperlukan. Mohon arahkan saya kepada petugas yang menangani pembaruan data pelanggan. Kantor kami akan berpindah lokasi pada awal bulan depan, sementara nama badan usaha dan pengurus tetap sama. Kami ingin memastikan bahwa surat pemberitahuan serta dokumen resmi berikutnya dikirim ke alamat baru. Saya belum mengirim formulir karena tidak mengetahui apakah pembaruan perlu diajukan melalui portal atau dapat disampaikan melalui surel resmi. Mohon berikan formulir yang berlaku dan petunjuk pengisiannya. Kami memiliki surat keterangan alamat baru serta dokumen perusahaan yang dapat digunakan sebagai bukti. Jika diperlukan surat kuasa, tolong jelaskan siapa yang harus menandatangani dan apakah salinan elektronik diterima. Saya juga ingin mengetahui apakah perubahan alamat dapat dijadwalkan mulai tanggal tertentu agar surat yang sedang diproses tetap sampai ke kantor lama. Petugas penerima surat masih berada di lokasi lama selama masa perpindahan. Nomor telepon perusahaan dan alamat surel utama tidak berubah. Untuk keperluan arsip, kami membutuhkan konfirmasi tertulis setelah pembaruan selesai. Mohon jelaskan perkiraan lama pemeriksaan dan cara mengikuti status permintaan tanpa membuat pengajuan baru. Apabila perubahan ini perlu dilaporkan kepada beberapa bagian secara terpisah, tolong sebutkan bagian yang dimaksud beserta kontaknya",
+      "expected": "other",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 336,
+      "warm_memory": {
+        "rss_before_mib": 580.78125,
+        "rss_after_mib": 581.203125,
+        "sampled_peak_rss_mib": 581.25,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 140.81270799943013,
+        "p95_ms": 156.6342080004688,
+        "min_ms": 136.4055419981014,
+        "max_ms": 166.58616600034293,
+        "correct_repeated_predictions": 0,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                301
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "other_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 281.8395829999987,
+          "self_cpu_ms_per_inference": 56.36791659999974,
+          "share_of_aten_self_cpu_pct": 39.88677638329641
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 76.2865780000001,
+          "self_cpu_ms_per_inference": 15.257315600000021,
+          "share_of_aten_self_cpu_pct": 10.7963035047952
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [1, 1, 301, 301], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 67.8727579999997,
+          "self_cpu_ms_per_inference": 13.57455159999994,
+          "share_of_aten_self_cpu_pct": 9.605554663567586
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 46.38375400000119,
+          "self_cpu_ms_per_inference": 9.276750800000238,
+          "share_of_aten_self_cpu_pct": 6.564366878217694
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 301, 64], [1, 12, 301, 64], [1, 12, 301, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 30.463657000000232,
+          "self_cpu_ms_per_inference": 6.092731400000046,
+          "share_of_aten_self_cpu_pct": 4.311307381463368
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 301, 64], [1, 1, 301, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 22.562918999998523,
+          "self_cpu_ms_per_inference": 4.512583799999705,
+          "share_of_aten_self_cpu_pct": 3.193171431520941
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 301, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 19.960346999999874,
+          "self_cpu_ms_per_inference": 3.992069399999975,
+          "share_of_aten_self_cpu_pct": 2.824847698280905
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 19.775634000000046,
+          "self_cpu_ms_per_inference": 3.9551268000000093,
+          "share_of_aten_self_cpu_pct": 2.79870656491824
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 19.572851000000025,
+          "self_cpu_ms_per_inference": 3.914570200000005,
+          "share_of_aten_self_cpu_pct": 2.7700081113893225
+        },
+        {
+          "case": "other_256",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 17.792057999999905,
+          "self_cpu_ms_per_inference": 3.558411599999981,
+          "share_of_aten_self_cpu_pct": 2.5179849873842572
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "other_256",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 10.10651999999993,
+          "self_cpu_ms_per_inference": 2.021303999999986,
+          "share_of_aten_self_cpu_pct": 1.4303047817570465,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "other_256",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.792573999999906,
+          "self_cpu_ms_per_inference": 1.9585147999999812,
+          "share_of_aten_self_cpu_pct": 1.385874209709147,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "other_256",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [301, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.780277000000119,
+          "self_cpu_ms_per_inference": 1.9560554000000239,
+          "share_of_aten_self_cpu_pct": 1.3841339016801755,
+          "net_self_tensor_allocation_bytes": 18493440
+        },
+        {
+          "case": "other_256",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 9.669114000000118,
+          "self_cpu_ms_per_inference": 1.9338228000000235,
+          "share_of_aten_self_cpu_pct": 1.3684017831611934,
+          "net_self_tensor_allocation_bytes": 4623360
+        },
+        {
+          "case": "other_256",
+          "module": "encoder.layers.8.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.873842999999964,
+          "self_cpu_ms_per_inference": 1.3747685999999928,
+          "share_of_aten_self_cpu_pct": 0.9728067140763802,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "other_256",
+          "module": "encoder.layers.20.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.811931999999986,
+          "self_cpu_ms_per_inference": 1.3623863999999972,
+          "share_of_aten_self_cpu_pct": 0.9640448851438367,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "other_256",
+          "module": "encoder.layers.7.mlp.Wi",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.75197100000007,
+          "self_cpu_ms_per_inference": 1.350394200000014,
+          "share_of_aten_self_cpu_pct": 0.9555590260134126,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "other_256",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [301, 768], [768, 768], [], []]",
+          "calls": 15,
+          "calls_per_inference": 3.0,
+          "self_cpu_ms": 6.734053999999888,
+          "self_cpu_ms_per_inference": 1.3468107999999774,
+          "share_of_aten_self_cpu_pct": 0.9530233588624047,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "other_256",
+          "module": "encoder.layers.10.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.690223999999944,
+          "self_cpu_ms_per_inference": 1.3380447999999887,
+          "share_of_aten_self_cpu_pct": 0.9468204068488204,
+          "net_self_tensor_allocation_bytes": 13870080
+        },
+        {
+          "case": "other_256",
+          "module": "encoder.layers.8.attn.Wqkv",
+          "operation": "aten::mm",
+          "input_shapes": "[[301, 768], [768, 2304]]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 6.666057999999917,
+          "self_cpu_ms_per_inference": 1.3332115999999834,
+          "share_of_aten_self_cpu_pct": 0.9434003626243019,
+          "net_self_tensor_allocation_bytes": 13870080
+        }
+      ]
+    },
+    {
+      "id": "billing_512",
+      "text": " Pengembalian dana untuk pesanan yang dibatalkan belum masuk ke rekening saya meskipun pemberitahuan menyebutkan proses telah selesai. Saya meminta penelusuran transaksi refund dan penjelasan mengenai status dana yang seharusnya dikembalikan. Pesanan dibatalkan setelah pihak penyedia mengonfirmasi bahwa barang tidak tersedia. Pembatalan tersebut disetujui dan saya menerima rincian nominal pengembalian melalui surel. Metode pembayaran awal adalah transfer dari rekening pribadi. Saya tidak meminta pengembalian dalam bentuk saldo akun atau kupon belanja. Nominal yang disetujui sama dengan pembayaran awal setelah biaya pengiriman ikut dibatalkan. Dalam pemberitahuan terakhir terdapat nomor referensi, tetapi tidak ada nama bank tujuan atau tanggal dana dikirim. Saya sudah memeriksa mutasi rekening sejak tanggal persetujuan pembatalan sampai hari ini. Tidak ada transaksi masuk dengan nominal yang sesuai. Bank juga meminta bukti transfer pengembalian agar mereka dapat membantu penelusuran. Karena itu, mohon kirimkan tanggal pemrosesan, rekening tujuan yang disamarkan, nama bank pengirim, dan nomor referensi yang dapat digunakan untuk pemeriksaan. Saya ingin memastikan bahwa rekening tujuan sesuai dengan rekening yang digunakan saat membayar. Pada halaman pesanan, status pembatalan sudah benar dan tidak ada kewajiban pembayaran tambahan. Namun status pengembalian dana hanya tertulis selesai, tanpa rincian pelaksanaannya. Saya telah menghubungi layanan pelanggan sebelumnya dan diminta menunggu beberapa hari kerja. Masa tunggu tersebut sudah terlewati. Dalam percakapan berikutnya, petugas kembali memberikan jawaban yang sama tanpa memeriksa nomor laporan sebelumnya. Mohon gunakan laporan yang sudah ada agar riwayat pemeriksaan tidak terpisah. Saya dapat melampirkan bukti pembayaran awal, surel persetujuan pembatalan, dan mutasi rekening yang relevan. Dokumen rekening akan saya kirim melalui kanal resmi sesuai petunjuk untuk menjaga kerahasiaan data. Apabila dana belum benar-benar dikirim, tolong jelaskan hambatan pemrosesan dan berikan tanggal penyelesaian yang dapat diikuti. Jika transaksi pengembalian ditolak oleh bank, mohon sampaikan alasannya dan langkah koreksi yang diperlukan. Saya bersedia memverifikasi nama pemilik rekening, tetapi tidak ingin mengubah tujuan pengembalian ke rekening pihak lain. Tolong pastikan bahwa proses tidak menghasilkan pengembalian ganda apabila transaksi lama ternyata masih menunggu penyelesaian. Saya membutuhkan konfirmasi status yang didukung catatan transaksi, bukan sekadar pemberitahuan umum bahwa pengajuan diterima. Dana tersebut akan digunakan kembali untuk kebutuhan lain, sehingga ketidakjelasan jadwal menyulitkan perencanaan saya. Setelah penelusuran selesai, mohon kirimkan ringkasan hasil pemeriksaan",
+      "expected": "billing",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 616,
+      "warm_memory": {
+        "rss_before_mib": 638.5,
+        "rss_after_mib": 635.890625,
+        "sampled_peak_rss_mib": 638.640625,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 262.08706200122833,
+        "p95_ms": 275.28295799857005,
+        "min_ms": 255.75212500189082,
+        "max_ms": 290.4023329974734,
+        "correct_repeated_predictions": 0,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "billing_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 475.0842359999991,
+          "self_cpu_ms_per_inference": 95.01684719999983,
+          "share_of_aten_self_cpu_pct": 35.20327856292291
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 212.9263910000003,
+          "self_cpu_ms_per_inference": 42.58527820000006,
+          "share_of_aten_self_cpu_pct": 15.777637917185853
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 130.0758159999999,
+          "self_cpu_ms_per_inference": 26.01516319999998,
+          "share_of_aten_self_cpu_pct": 9.638491109495606
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 102.20027299999941,
+          "self_cpu_ms_per_inference": 20.440054599999883,
+          "share_of_aten_self_cpu_pct": 7.572940558747052
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 78.20809999999963,
+          "self_cpu_ms_per_inference": 15.641619999999927,
+          "share_of_aten_self_cpu_pct": 5.795143937751968
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 557, 64], [1, 1, 557, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 38.488555000000744,
+          "self_cpu_ms_per_inference": 7.697711000000149,
+          "share_of_aten_self_cpu_pct": 2.851964389635965
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 35.64883300000025,
+          "self_cpu_ms_per_inference": 7.129766600000051,
+          "share_of_aten_self_cpu_pct": 2.6415437588674915
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 34.28835899999973,
+          "self_cpu_ms_per_inference": 6.857671799999946,
+          "share_of_aten_self_cpu_pct": 2.5407339622662164
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 557, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 33.306968000000396,
+          "self_cpu_ms_per_inference": 6.661393600000079,
+          "share_of_aten_self_cpu_pct": 2.4680138462653094
+        },
+        {
+          "case": "billing_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 30.5807309999984,
+          "self_cpu_ms_per_inference": 6.1161461999996805,
+          "share_of_aten_self_cpu_pct": 2.266002343320771
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.5.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 19.84301800000004,
+          "self_cpu_ms_per_inference": 3.968603600000008,
+          "share_of_aten_self_cpu_pct": 1.4703482819478282,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "billing_512",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.866646000000184,
+          "self_cpu_ms_per_inference": 3.5733292000000367,
+          "share_of_aten_self_cpu_pct": 1.3239010441995391,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "billing_512",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.782187000000064,
+          "self_cpu_ms_per_inference": 3.556437400000013,
+          "share_of_aten_self_cpu_pct": 1.3176427146679524,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "billing_512",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.410360999999945,
+          "self_cpu_ms_per_inference": 3.482072199999989,
+          "share_of_aten_self_cpu_pct": 1.2900907706902922,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.1.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.956201000000476,
+          "self_cpu_ms_per_inference": 3.3912402000000954,
+          "share_of_aten_self_cpu_pct": 1.2564379576087013,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "billing_512",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.87799799999979,
+          "self_cpu_ms_per_inference": 3.3755995999999575,
+          "share_of_aten_self_cpu_pct": 1.2506431915759244,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.2.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.57854700000035,
+          "self_cpu_ms_per_inference": 3.3157094000000695,
+          "share_of_aten_self_cpu_pct": 1.228454164514782,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.4.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.52246799999979,
+          "self_cpu_ms_per_inference": 3.304493599999958,
+          "share_of_aten_self_cpu_pct": 1.224298765305641,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.3.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.36754900000037,
+          "self_cpu_ms_per_inference": 3.273509800000074,
+          "share_of_aten_self_cpu_pct": 1.2128194184900396,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "billing_512",
+          "module": "encoder.layers.8.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.696818000000071,
+          "self_cpu_ms_per_inference": 3.1393636000000145,
+          "share_of_aten_self_cpu_pct": 1.1631189055186968,
+          "net_self_tensor_allocation_bytes": -2959360
+        }
+      ]
+    },
+    {
+      "id": "technical_512",
+      "text": " Hasil ekspor laporan dari aplikasi kehilangan sebagian baris data meskipun tabel di layar menampilkan seluruh catatan. Saya meminta pemeriksaan fungsi ekspor dan perbaikan agar dokumen yang diunduh memuat data lengkap. Masalah ditemukan ketika tim kami menyiapkan laporan kegiatan mingguan. Pada halaman daftar, jumlah catatan sesuai dengan data yang dimasukkan oleh operator. Filter tanggal sudah dipilih untuk seluruh minggu dan tidak ada pembatasan berdasarkan petugas. Ketika tombol ekspor digunakan, aplikasi menghasilkan berkas tanpa menampilkan pesan kesalahan. Namun jumlah baris di dalam berkas lebih sedikit daripada jumlah yang terlihat pada layar. Beberapa catatan yang hilang berasal dari hari yang berbeda, sehingga masalah tidak tampak terbatas pada satu tanggal. Saya sudah mengulangi proses dengan filter yang lebih sempit dan menemukan bahwa sebagian catatan dapat muncul jika diekspor secara terpisah. Ini membuat kami menduga ada masalah pada pengambilan data atau batas jumlah hasil dalam satu permintaan. Saya belum dapat memastikan penyebabnya dan berharap tim teknis memeriksa proses tersebut. Ekspor ke format spreadsheet maupun PDF menunjukkan jumlah catatan yang tidak lengkap. Nama kolom dan format tanggal masih benar, tetapi beberapa baris tidak disertakan. Data pada aplikasi sendiri tidak terlihat terhapus. Rekan yang memiliki izin akses sama mencoba proses dari perangkat lain dan mendapatkan hasil serupa. Kami menggunakan versi aplikasi terbaru dan telah mencoba peramban yang berbeda. Membersihkan cache tidak mengubah hasil. Saya mencatat jumlah baris yang terlihat di halaman, jumlah baris hasil ekspor, rentang tanggal, dan waktu setiap percobaan. Catatan tersebut dapat diberikan sebagai bahan reproduksi masalah. Saya juga menyiapkan contoh nomor catatan yang hilang agar tim dapat membandingkan hasil permintaan dengan data yang tersimpan. Untuk menjaga informasi internal, contoh berkas akan dikirim melalui kanal dukungan resmi. Mohon jelaskan apakah fungsi ekspor memiliki batas jumlah baris yang tidak ditampilkan pada antarmuka. Jika memang ada batas, kami membutuhkan petunjuk untuk mengambil seluruh data secara aman. Jika masalah berasal dari kesalahan implementasi, tolong berikan perkiraan waktu perbaikan dan cara sementara yang dapat digunakan tanpa mengubah data sumber. Kami berharap tidak perlu menyalin tabel secara manual karena cara itu mudah menghasilkan kesalahan. Laporan diperlukan oleh beberapa tim, sehingga kelengkapan catatan harus dapat diverifikasi. Setelah perbaikan, kami akan membandingkan jumlah baris dan nomor catatan dengan tampilan aplikasi. Tolong pastikan urutan serta isi kolom juga tetap konsisten. Saya meminta nomor laporan agar komunikasi berikutnya dapat mengikuti riwayat yang sama. Jika dibutuhkan sesi pemeriksaan bersama, saya dapat menjadwalkan demonstrasi pada akun uji yang memiliki pola data serupa. Tim kami tidak ingin menghapus atau mengunggah ulang catatan sebelum mengetahui penyebab",
+      "expected": "technical",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 573,
+      "warm_memory": {
+        "rss_before_mib": 630.6875,
+        "rss_after_mib": 631.328125,
+        "sampled_peak_rss_mib": 631.359375,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 265.6554170007439,
+        "p95_ms": 327.20762499957345,
+        "min_ms": 258.90954199712723,
+        "max_ms": 367.1790840016911,
+        "correct_repeated_predictions": 30,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "technical_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 475.1270719999989,
+          "self_cpu_ms_per_inference": 95.02541439999979,
+          "share_of_aten_self_cpu_pct": 35.28038995578925
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 210.00814399999894,
+          "self_cpu_ms_per_inference": 42.001628799999786,
+          "share_of_aten_self_cpu_pct": 15.594079249206676
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 131.2321610000008,
+          "self_cpu_ms_per_inference": 26.246432200000157,
+          "share_of_aten_self_cpu_pct": 9.744596946100678
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 105.08785600000027,
+          "self_cpu_ms_per_inference": 21.017571200000056,
+          "share_of_aten_self_cpu_pct": 7.8032609754088
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 78.37580000000055,
+          "self_cpu_ms_per_inference": 15.67516000000011,
+          "share_of_aten_self_cpu_pct": 5.819766858279493
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 557, 64], [1, 1, 557, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 39.323661999998755,
+          "self_cpu_ms_per_inference": 7.864732399999751,
+          "share_of_aten_self_cpu_pct": 2.9199643876525134
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 557, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 35.72407800000076,
+          "self_cpu_ms_per_inference": 7.144815600000152,
+          "share_of_aten_self_cpu_pct": 2.6526785715360424
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 34.37068699999931,
+          "self_cpu_ms_per_inference": 6.874137399999862,
+          "share_of_aten_self_cpu_pct": 2.5521830092821043
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 34.15428000000014,
+          "self_cpu_ms_per_inference": 6.830856000000028,
+          "share_of_aten_self_cpu_pct": 2.5361137852806293
+        },
+        {
+          "case": "technical_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 29.971082000000926,
+          "self_cpu_ms_per_inference": 5.994216400000186,
+          "share_of_aten_self_cpu_pct": 2.2254919213632425
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "technical_512",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.347445999999707,
+          "self_cpu_ms_per_inference": 3.4694891999999413,
+          "share_of_aten_self_cpu_pct": 1.2881283675138337,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "technical_512",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.242948999999673,
+          "self_cpu_ms_per_inference": 3.4485897999999344,
+          "share_of_aten_self_cpu_pct": 1.2803689803383305,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "technical_512",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.0232409999996,
+          "self_cpu_ms_per_inference": 3.40464819999992,
+          "share_of_aten_self_cpu_pct": 1.2640546417682708,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "technical_512",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.91133100000047,
+          "self_cpu_ms_per_inference": 3.382266200000094,
+          "share_of_aten_self_cpu_pct": 1.255744804942299,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.14.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.968435999999462,
+          "self_cpu_ms_per_inference": 3.1936871999998924,
+          "share_of_aten_self_cpu_pct": 1.1857304756232585,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.20.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.88985500000001,
+          "self_cpu_ms_per_inference": 3.177971000000002,
+          "share_of_aten_self_cpu_pct": 1.1798954717127748,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.13.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.856349000000161,
+          "self_cpu_ms_per_inference": 3.171269800000032,
+          "share_of_aten_self_cpu_pct": 1.1774074957258933,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.8.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.622567999999912,
+          "self_cpu_ms_per_inference": 3.1245135999999825,
+          "share_of_aten_self_cpu_pct": 1.160048171599098,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.21.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.404904000000096,
+          "self_cpu_ms_per_inference": 3.0809808000000194,
+          "share_of_aten_self_cpu_pct": 1.14388560951438,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "technical_512",
+          "module": "encoder.layers.7.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.335117999999449,
+          "self_cpu_ms_per_inference": 3.0670235999998896,
+          "share_of_aten_self_cpu_pct": 1.1387036751676087,
+          "net_self_tensor_allocation_bytes": -2959360
+        }
+      ]
+    },
+    {
+      "id": "other_512",
+      "text": " Saya ingin meminta informasi mengenai prosedur kunjungan edukasi untuk rombongan mahasiswa ke fasilitas perusahaan. Mohon arahkan permintaan ini kepada tim yang menangani hubungan masyarakat atau kegiatan kunjungan institusi. Tujuan kegiatan adalah mengenalkan proses kerja dan pengelolaan dokumen kepada mahasiswa yang sedang mengikuti mata kuliah administrasi. Kami belum melakukan pemesanan dan masih menyesuaikan rencana dengan kebijakan penerimaan pengunjung. Jumlah peserta diperkirakan tiga puluh orang, didampingi dua dosen. Kami dapat membagi rombongan menjadi kelompok kecil apabila jumlah tersebut melebihi kapasitas satu sesi. Waktu kunjungan yang diusulkan berada pada hari kerja bulan depan, tetapi tanggalnya masih dapat disesuaikan dengan jadwal perusahaan. Mohon jelaskan hari yang tersedia, durasi kegiatan, dan batas jumlah peserta. Kami juga ingin mengetahui apakah diperlukan surat permohonan resmi dari fakultas. Jika ada format surat tertentu, tolong kirimkan contoh atau daftar informasi yang wajib dicantumkan. Kami dapat menyiapkan identitas penanggung jawab, daftar peserta, dan tujuan pembelajaran. Untuk persiapan keberangkatan, saya membutuhkan alamat lokasi serta petunjuk mengenai pintu masuk yang digunakan oleh rombongan. Mohon sampaikan apakah kendaraan kampus dapat berhenti di area penerimaan dan apakah tersedia tempat parkir untuk bus kecil. Jika peserta perlu berjalan dari lokasi parkir, kami ingin memperkirakan waktu kedatangan agar tidak terlambat. Salah satu peserta membutuhkan akses yang mudah dilalui, sehingga informasi mengenai tangga dan jalur masuk akan membantu persiapan. Kami ingin mengikuti seluruh ketentuan keamanan yang berlaku. Tolong jelaskan dokumen identitas yang perlu dibawa, aturan pakaian, barang yang tidak boleh masuk, dan kebijakan penggunaan kamera. Jika pengambilan gambar hanya diperbolehkan pada area tertentu, kami akan menyampaikan aturan tersebut kepada peserta sebelum berangkat. Kami juga dapat mengumpulkan pertanyaan mahasiswa terlebih dahulu agar sesi diskusi lebih terarah. Topik yang ingin dipahami meliputi pembagian tugas, alur pemeriksaan dokumen, dan cara perusahaan menjaga mutu layanan. Kami tidak meminta akses ke informasi rahasia atau area yang tidak diperbolehkan untuk pengunjung. Apabila ada materi pengantar yang dapat dibaca sebelum kunjungan, mohon bagikan tautan atau dokumen resminya. Dosen pendamping akan menggunakan materi tersebut untuk mempersiapkan peserta. Kami juga ingin mengetahui apakah tersedia narasumber untuk penjelasan singkat dan apakah diskusi dilakukan sebelum atau sesudah tur. Untuk administrasi kampus, kami memerlukan konfirmasi tertulis mengenai jadwal yang telah disepakati. Jika tanggal belum dapat ditentukan sekarang, cukup berikan prosedur pengajuan serta perkiraan waktu tanggapan. Mohon sebutkan kontak yang dapat dihubungi agar koordinasi tidak tersebar ke banyak bagian. Saya akan menjadi penghubung",
+      "expected": "other",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 589,
+      "warm_memory": {
+        "rss_before_mib": 624.25,
+        "rss_after_mib": 624.640625,
+        "sampled_peak_rss_mib": 625.015625,
+        "process_lifetime_peak_rss_mib": 1180.3125,
+        "sampling_interval_ms": 2.0
+      },
+      "latency": {
+        "median_ms": 275.17208350036526,
+        "p95_ms": 360.1031250000233,
+        "min_ms": 262.781207999069,
+        "max_ms": 876.1290000002191,
+        "correct_repeated_predictions": 0,
+        "repeats": 30
+      },
+      "model_forward_inputs": [
+        {
+          "args": [
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                557
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.int64"
+            },
+            {
+              "shape": [
+                1,
+                3
+              ],
+              "dtype": "torch.bool"
+            },
+            {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.int64"
+            }
+          ],
+          "kwargs": {}
+        }
+      ],
+      "usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      },
+      "top_operations": [
+        {
+          "case": "other_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 2304]]",
+          "calls": 220,
+          "calls_per_inference": 44.0,
+          "self_cpu_ms": 480.1853809999997,
+          "self_cpu_ms_per_inference": 96.03707619999994,
+          "share_of_aten_self_cpu_pct": 35.57159336390987
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 70,
+          "calls_per_inference": 14.0,
+          "self_cpu_ms": 212.10118399999928,
+          "self_cpu_ms_per_inference": 42.420236799999856,
+          "share_of_aten_self_cpu_pct": 15.712217338936034
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 1152], [1152, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 137.86142400000054,
+          "self_cpu_ms_per_inference": 27.57228480000011,
+          "share_of_aten_self_cpu_pct": 10.212619353144339
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 99.38581099999939,
+          "self_cpu_ms_per_inference": 19.87716219999988,
+          "share_of_aten_self_cpu_pct": 7.362389183260833
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::mm",
+          "input_shapes": "[[557, 768], [768, 768]]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 77.707313,
+          "self_cpu_ms_per_inference": 15.5414626,
+          "share_of_aten_self_cpu_pct": 5.756470414991807
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::mul",
+          "input_shapes": "[[1, 12, 557, 64], [1, 1, 557, 64]]",
+          "calls": 440,
+          "calls_per_inference": 88.0,
+          "self_cpu_ms": 35.45496600000064,
+          "self_cpu_ms_per_inference": 7.090993200000128,
+          "share_of_aten_self_cpu_pct": 2.626464034904205
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::gelu",
+          "input_shapes": "[[1, 557, 1152], []]",
+          "calls": 110,
+          "calls_per_inference": 22.0,
+          "self_cpu_ms": 35.22062899999956,
+          "self_cpu_ms_per_inference": 7.044125799999913,
+          "share_of_aten_self_cpu_pct": 2.609104613305828
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 34.84938900000055,
+          "self_cpu_ms_per_inference": 6.96987780000011,
+          "share_of_aten_self_cpu_pct": 2.5816035713272454
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 10,
+          "calls_per_inference": 2.0,
+          "self_cpu_ms": 34.54701600000024,
+          "self_cpu_ms_per_inference": 6.909403200000048,
+          "share_of_aten_self_cpu_pct": 2.559204119311782
+        },
+        {
+          "case": "other_512",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 768], [768, 768], [], []]",
+          "calls": 40,
+          "calls_per_inference": 8.0,
+          "self_cpu_ms": 29.69608999999921,
+          "self_cpu_ms_per_inference": 5.939217999999842,
+          "share_of_aten_self_cpu_pct": 2.1998529729876197
+        }
+      ],
+      "top_layer_operations": [
+        {
+          "case": "other_512",
+          "module": "encoder.layers.16.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 26.969566000000196,
+          "self_cpu_ms_per_inference": 5.393913200000039,
+          "share_of_aten_self_cpu_pct": 1.9978751392957066,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "other_512",
+          "module": "head.layers.0.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.7096050000001,
+          "self_cpu_ms_per_inference": 3.54192100000002,
+          "share_of_aten_self_cpu_pct": 1.3119076353044345,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "other_512",
+          "module": "head.layers.1.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.472445000000125,
+          "self_cpu_ms_per_inference": 3.494489000000025,
+          "share_of_aten_self_cpu_pct": 1.2943390890387916,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "other_512",
+          "module": "head.layers.0.linear2",
+          "operation": "aten::addmm",
+          "input_shapes": "[[768], [557, 3072], [3072, 768], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 17.376944000000424,
+          "self_cpu_ms_per_inference": 3.475388800000085,
+          "share_of_aten_self_cpu_pct": 1.2872644822884538,
+          "net_self_tensor_allocation_bytes": 8555520
+        },
+        {
+          "case": "other_512",
+          "module": "head.layers.1.linear1",
+          "operation": "aten::addmm",
+          "input_shapes": "[[3072], [557, 768], [768, 3072], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 16.837411000000138,
+          "self_cpu_ms_per_inference": 3.3674822000000275,
+          "share_of_aten_self_cpu_pct": 1.2472964840073473,
+          "net_self_tensor_allocation_bytes": 34222080
+        },
+        {
+          "case": "other_512",
+          "module": "encoder.layers.14.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.627398999999278,
+          "self_cpu_ms_per_inference": 3.1254797999998556,
+          "share_of_aten_self_cpu_pct": 1.157660154929928,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "other_512",
+          "module": "head.layers.1.self_attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 1, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.40532299999954,
+          "self_cpu_ms_per_inference": 3.081064599999908,
+          "share_of_aten_self_cpu_pct": 1.141209014432016,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "other_512",
+          "module": "encoder.layers.13.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 15.226827999999893,
+          "self_cpu_ms_per_inference": 3.0453655999999785,
+          "share_of_aten_self_cpu_pct": 1.1279863054352202,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "other_512",
+          "module": "encoder.layers.1.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [1, 1, 557, 557], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 14.97599799999984,
+          "self_cpu_ms_per_inference": 2.9951995999999683,
+          "share_of_aten_self_cpu_pct": 1.1094051009327213,
+          "net_self_tensor_allocation_bytes": -2959360
+        },
+        {
+          "case": "other_512",
+          "module": "encoder.layers.15.attn",
+          "operation": "aten::_scaled_dot_product_flash_attention_for_cpu",
+          "input_shapes": "[[1, 12, 557, 64], [1, 12, 557, 64], [1, 12, 557, 64], [], [], [], []]",
+          "calls": 5,
+          "calls_per_inference": 1.0,
+          "self_cpu_ms": 14.446180000000197,
+          "self_cpu_ms_per_inference": 2.8892360000000394,
+          "share_of_aten_self_cpu_pct": 1.0701567789333737,
+          "net_self_tensor_allocation_bytes": -2959360
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Twelve unique authored scenarios, four each for billing, technical and other.",
+    "Texts are cropped to exact state-token targets, without repeated filler.",
+    "These authored examples do not establish real-world accuracy.",
+    "Target length refers to state text; actual packed model shapes are recorded.",
+    "Latency runs have no profiler, module scopes or RAM sampling thread.",
+    "Memory runs are separate; sampled peaks may miss short spikes.",
+    "OS peak RSS is process-lifetime, not phase-local; RSS is not parameter size.",
+    "Operator percentages use summed aten self CPU, not predict wall time.",
+    "Profiler tensor allocation counters are not peak resident memory.",
+    "First inference excludes download/load; load may include cached download checks."
+  ],
+  "versions": {
+    "torch": "2.14.1",
+    "laya": "0.3.28",
+    "psutil": "7.2.2"
+  },
+  "model": {
+    "load_seconds": 7.0254073750002135,
+    "device": "cpu",
+    "parameter_count": 321908995,
+    "parameter_mib": 1227.9853630065918,
+    "buffer_mib": 0.000499725341796875,
+    "cpu_threads": 4
+  },
+  "first_inference": {
+    "wall_ms_with_ram_sampler": 184.51212500076508,
+    "prediction": "billing"
+  }
+}

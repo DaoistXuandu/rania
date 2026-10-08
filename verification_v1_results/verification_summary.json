@@ -1,0 +1,486 @@
+{
+  "config": {
+    "mode": "collect",
+    "output": "verification_v1_results",
+    "seed": 2026,
+    "rounds": 3,
+    "repeats": 10,
+    "warmup": 5,
+    "threads": 4,
+    "layers": "0,11,21",
+    "candidate": null,
+    "atol": 0.0001,
+    "rtol": 0.0001
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "laya": "0.3.28"
+  },
+  "platform": "macOS-26.4.1-arm64-arm-64bit",
+  "selected_modules": [
+    "encoder.layers.0.attn.Wqkv",
+    "encoder.layers.0.mlp.Wi",
+    "encoder.layers.11.attn.Wqkv",
+    "encoder.layers.11.mlp.Wi",
+    "encoder.layers.21.attn.Wqkv",
+    "encoder.layers.21.mlp.Wi"
+  ],
+  "cases": [
+    {
+      "id": "billing_64",
+      "text": " Saya melihat dua tagihan untuk pesanan yang sama, padahal hanya membeli satu kali. Pembayaran pertama berhasil dan pesanan sudah dikonfirmasi. Beberapa menit kemudian saldo rekening kembali berkurang dengan nominal yang sama. Mohon periksa kedua transaksi tersebut, batalkan penagihan kedua, dan kembalikan dana ke rekening asal",
+      "expected": "billing",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 88,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 1.0,
+          "technical": 0.0,
+          "other": 0.0
+        },
+        "confidence": 0.9997,
+        "answer_confidence": 1.0,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "technical_64",
+      "text": " Aplikasi langsung menutup sendiri setiap kali saya membuka halaman pengaturan akun. Halaman utama masih bisa dibuka, tetapi masalah selalu muncul setelah tombol pengaturan ditekan. Saya sudah mencoba memulai ulang ponsel dan memperbarui aplikasi, namun hasilnya tetap sama. Mohon bantu memeriksa penyebab gangguan dan memberikan langkah perbaikan supaya saya dapat mengubah pengaturan akun. Masalah ini",
+      "expected": "technical",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 80,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.0122,
+          "technical": 0.9731,
+          "other": 0.0147
+        },
+        "confidence": 0.8705,
+        "answer_confidence": 0.9731,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "other_64",
+      "text": " Saya ingin mengetahui jam operasional kantor layanan pada hari Sabtu dan apakah pengunjung perlu membuat janji terlebih dahulu. Rencananya saya datang untuk meminta informasi tentang program pelatihan yang tersedia bulan depan. Mohon kirimkan alamat kantor, petunjuk menuju lokasi, dan daftar dokumen yang perlu dibawa. Saya belum melakukan pembelian atau pembayaran apa pun",
+      "expected": "other",
+      "target_state_tokens": 64,
+      "actual_state_tokens": 64,
+      "source_draft_tokens": 76,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.4056,
+          "technical": 0.4404,
+          "other": 0.1539
+        },
+        "confidence": 0.0759,
+        "answer_confidence": 0.4404,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 109,
+        "output_tokens": 0,
+        "state_tokens": 64,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "billing_128",
+      "text": " Langganan saya sudah dibatalkan sebelum tanggal perpanjangan, tetapi kartu saya tetap dikenai biaya untuk periode berikutnya. Saya meminta pengembalian biaya tersebut dan konfirmasi bahwa penagihan otomatis sudah dihentikan. Pembatalan dilakukan melalui halaman akun, kemudian saya menerima surel yang menyatakan bahwa paket tidak akan diperpanjang. Tanggal pada surel tersebut lebih awal daripada tanggal transaksi yang sekarang muncul pada laporan kartu. Saya tidak memilih paket baru dan tidak memberikan persetujuan untuk mengaktifkan kembali langganan. Nominal transaksi sesuai dengan harga paket bulanan sebelumnya. Saya sudah menyimpan bukti pembatalan, nomor pelanggan, dan rincian pembayaran. Moh",
+      "expected": "billing",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 197,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.9025,
+          "technical": 0.0483,
+          "other": 0.0492
+        },
+        "confidence": 0.6477,
+        "answer_confidence": 0.9025,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "technical_128",
+      "text": " Saya tidak dapat masuk ke akun karena halaman autentikasi terus kembali ke formulir awal setelah kata sandi dimasukkan. Mohon bantu memperbaiki masalah login tersebut. Kata sandi sudah saya atur ulang melalui tautan resmi dan perubahan berhasil dikonfirmasi. Saat kata sandi baru digunakan, tidak ada pemberitahuan bahwa kredensial salah, tetapi halaman hanya memuat sebentar lalu meminta saya mengisi data lagi. Masalah yang sama terjadi pada dua peramban dan juga setelah cache dibersihkan. Koneksi internet normal dan situs lain dapat dibuka. Saya menggunakan perangkat yang sebelumnya rutin dipakai untuk mengakses akun ini. Tidak ada perubahan alamat surel maupun nomor",
+      "expected": "technical",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 196,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.0217,
+          "technical": 0.9623,
+          "other": 0.016
+        },
+        "confidence": 0.8306,
+        "answer_confidence": 0.9623,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "other_128",
+      "text": " Saya ingin meminta informasi mengenai kerja sama penyelenggaraan pelatihan untuk komunitas kami. Mohon arahkan permintaan ini kepada tim yang menangani program kemitraan. Peserta yang kami rencanakan berjumlah sekitar dua puluh orang dengan latar belakang usaha kecil. Topik yang dibutuhkan adalah pengenalan layanan, pengelolaan dokumen, dan prosedur pendaftaran. Kami belum menentukan tanggal karena ingin menyesuaikan jadwal narasumber. Kegiatan dapat dilaksanakan secara daring atau di ruang pertemuan komunitas, bergantung pada ketersediaan tim. Saya ingin mengetahui apakah ada persyaratan jumlah peserta, batas usia, atau dokumen pengajuan yang harus dipenuhi. Jika tersedia, mohon kirimkan profil program",
+      "expected": "other",
+      "target_state_tokens": 128,
+      "actual_state_tokens": 128,
+      "source_draft_tokens": 197,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "other",
+        "probabilities": {
+          "billing": 0.0692,
+          "technical": 0.2032,
+          "other": 0.7276
+        },
+        "confidence": 0.3264,
+        "answer_confidence": 0.7276,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 173,
+        "output_tokens": 0,
+        "state_tokens": 128,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "billing_256",
+      "text": " Nominal pada faktur bulan ini tidak sesuai dengan kesepakatan harga dalam kontrak. Saya meminta pemeriksaan rincian biaya dan penerbitan faktur yang sudah diperbaiki sebelum pembayaran dilakukan. Paket yang kami gunakan memiliki tarif tetap dengan jumlah pengguna yang telah disepakati. Namun faktur terbaru mencantumkan tambahan biaya pengguna dan layanan pendamping yang tidak pernah kami pesan. Tidak ada perubahan paket yang diajukan oleh pengelola akun perusahaan. Kami juga tidak menerima pemberitahuan atau persetujuan tertulis mengenai penambahan layanan. Saya sudah membandingkan faktur terbaru dengan faktur dua bulan sebelumnya. Biaya utama tetap sama, sementara selisih muncul pada dua baris tambahan yang belum memiliki penjelasan. Nama perusahaan dan nomor pelanggan pada faktur sudah benar, sehingga dokumen tersebut memang ditujukan kepada akun kami. Bagian keuangan belum memproses pembayaran karena perlu memastikan bahwa nominal sesuai dengan dokumen kontrak. Mohon periksa tanggal mulai layanan tambahan, siapa yang menyetujuinya, dan dasar perhitungan jumlah pengguna. Apabila pencatatan tersebut merupakan kesalahan, tolong hapus biaya tambahan dan kirim faktur pengganti dengan nomor referensi yang dapat ditelusuri. Kami membutuhkan dokumen koreksi untuk melengkapi arsip pembayaran dan proses persetujuan internal. Jika ternyata ada perubahan tarif yang berlaku, mohon sertakan pemberitah",
+      "expected": "billing",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 363,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.9964,
+          "technical": 0.0015,
+          "other": 0.0021
+        },
+        "confidence": 0.976,
+        "answer_confidence": 0.9964,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "technical_256",
+      "text": " Dokumen yang diunggah melalui portal tidak muncul dalam daftar berkas meskipun indikator unggahan menyatakan selesai. Saya membutuhkan bantuan untuk memeriksa proses penyimpanan dan memperbaiki gangguan tersebut. Kejadian ini berlangsung saat saya mengirim beberapa berkas PDF untuk melengkapi pengajuan. Setiap berkas berukuran kecil dan sesuai dengan jenis dokumen yang diperbolehkan. Setelah memilih berkas, indikator kemajuan mencapai akhir dan halaman menampilkan pemberitahuan berhasil. Namun ketika daftar dokumen dimuat kembali, nama berkas tidak ditemukan. Saya sudah mencoba keluar lalu masuk kembali, tetapi daftar tetap tidak berubah. Mengunggah satu berkas saja menghasilkan masalah yang sama. Tidak ada pesan yang menyatakan kuota penyimpanan habis atau format ditolak. Saya memeriksa koneksi internet dan mencoba jaringan lain untuk memastikan gangguan bukan berasal dari sambungan lokal. Rekan saya dapat membuka portal, tetapi pengunggahan pada akun saya tetap tidak tersimpan. Saya belum mengulangi unggahan berkali-kali karena khawatir berkas sebenarnya tersimpan di belakang layar dan akan menjadi duplikat. Mohon periksa log permintaan pada waktu kejadian, status penyimpanan berkas, serta hubungan berkas dengan nomor pengajuan. Jika berkas sudah tersimpan, tolong pulihkan tampilannya pada daftar dokumen. Jika penyimpanan gagal, mohon berikan langkah pengunggahan ulang",
+      "expected": "technical",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 344,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.0041,
+          "technical": 0.9767,
+          "other": 0.0192
+        },
+        "confidence": 0.8892,
+        "answer_confidence": 0.9767,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "other_256",
+      "text": " Saya ingin mengajukan permintaan perubahan alamat korespondensi perusahaan dan mengetahui dokumen administrasi yang diperlukan. Mohon arahkan saya kepada petugas yang menangani pembaruan data pelanggan. Kantor kami akan berpindah lokasi pada awal bulan depan, sementara nama badan usaha dan pengurus tetap sama. Kami ingin memastikan bahwa surat pemberitahuan serta dokumen resmi berikutnya dikirim ke alamat baru. Saya belum mengirim formulir karena tidak mengetahui apakah pembaruan perlu diajukan melalui portal atau dapat disampaikan melalui surel resmi. Mohon berikan formulir yang berlaku dan petunjuk pengisiannya. Kami memiliki surat keterangan alamat baru serta dokumen perusahaan yang dapat digunakan sebagai bukti. Jika diperlukan surat kuasa, tolong jelaskan siapa yang harus menandatangani dan apakah salinan elektronik diterima. Saya juga ingin mengetahui apakah perubahan alamat dapat dijadwalkan mulai tanggal tertentu agar surat yang sedang diproses tetap sampai ke kantor lama. Petugas penerima surat masih berada di lokasi lama selama masa perpindahan. Nomor telepon perusahaan dan alamat surel utama tidak berubah. Untuk keperluan arsip, kami membutuhkan konfirmasi tertulis setelah pembaruan selesai. Mohon jelaskan perkiraan lama pemeriksaan dan cara mengikuti status permintaan tanpa membuat pengajuan baru. Apabila perubahan ini perlu dilaporkan kepada beberapa bagian secara terpisah, tolong sebutkan bagian yang dimaksud beserta kontaknya",
+      "expected": "other",
+      "target_state_tokens": 256,
+      "actual_state_tokens": 256,
+      "source_draft_tokens": 336,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.8002,
+          "technical": 0.1152,
+          "other": 0.0846
+        },
+        "confidence": 0.4209,
+        "answer_confidence": 0.8002,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 301,
+        "output_tokens": 0,
+        "state_tokens": 256,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "billing_512",
+      "text": " Pengembalian dana untuk pesanan yang dibatalkan belum masuk ke rekening saya meskipun pemberitahuan menyebutkan proses telah selesai. Saya meminta penelusuran transaksi refund dan penjelasan mengenai status dana yang seharusnya dikembalikan. Pesanan dibatalkan setelah pihak penyedia mengonfirmasi bahwa barang tidak tersedia. Pembatalan tersebut disetujui dan saya menerima rincian nominal pengembalian melalui surel. Metode pembayaran awal adalah transfer dari rekening pribadi. Saya tidak meminta pengembalian dalam bentuk saldo akun atau kupon belanja. Nominal yang disetujui sama dengan pembayaran awal setelah biaya pengiriman ikut dibatalkan. Dalam pemberitahuan terakhir terdapat nomor referensi, tetapi tidak ada nama bank tujuan atau tanggal dana dikirim. Saya sudah memeriksa mutasi rekening sejak tanggal persetujuan pembatalan sampai hari ini. Tidak ada transaksi masuk dengan nominal yang sesuai. Bank juga meminta bukti transfer pengembalian agar mereka dapat membantu penelusuran. Karena itu, mohon kirimkan tanggal pemrosesan, rekening tujuan yang disamarkan, nama bank pengirim, dan nomor referensi yang dapat digunakan untuk pemeriksaan. Saya ingin memastikan bahwa rekening tujuan sesuai dengan rekening yang digunakan saat membayar. Pada halaman pesanan, status pembatalan sudah benar dan tidak ada kewajiban pembayaran tambahan. Namun status pengembalian dana hanya tertulis selesai, tanpa rincian pelaksanaannya. Saya telah menghubungi layanan pelanggan sebelumnya dan diminta menunggu beberapa hari kerja. Masa tunggu tersebut sudah terlewati. Dalam percakapan berikutnya, petugas kembali memberikan jawaban yang sama tanpa memeriksa nomor laporan sebelumnya. Mohon gunakan laporan yang sudah ada agar riwayat pemeriksaan tidak terpisah. Saya dapat melampirkan bukti pembayaran awal, surel persetujuan pembatalan, dan mutasi rekening yang relevan. Dokumen rekening akan saya kirim melalui kanal resmi sesuai petunjuk untuk menjaga kerahasiaan data. Apabila dana belum benar-benar dikirim, tolong jelaskan hambatan pemrosesan dan berikan tanggal penyelesaian yang dapat diikuti. Jika transaksi pengembalian ditolak oleh bank, mohon sampaikan alasannya dan langkah koreksi yang diperlukan. Saya bersedia memverifikasi nama pemilik rekening, tetapi tidak ingin mengubah tujuan pengembalian ke rekening pihak lain. Tolong pastikan bahwa proses tidak menghasilkan pengembalian ganda apabila transaksi lama ternyata masih menunggu penyelesaian. Saya membutuhkan konfirmasi status yang didukung catatan transaksi, bukan sekadar pemberitahuan umum bahwa pengajuan diterima. Dana tersebut akan digunakan kembali untuk kebutuhan lain, sehingga ketidakjelasan jadwal menyulitkan perencanaan saya. Setelah penelusuran selesai, mohon kirimkan ringkasan hasil pemeriksaan",
+      "expected": "billing",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 616,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.4047,
+          "technical": 0.4171,
+          "other": 0.1782
+        },
+        "confidence": 0.055,
+        "answer_confidence": 0.4171,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "technical_512",
+      "text": " Hasil ekspor laporan dari aplikasi kehilangan sebagian baris data meskipun tabel di layar menampilkan seluruh catatan. Saya meminta pemeriksaan fungsi ekspor dan perbaikan agar dokumen yang diunduh memuat data lengkap. Masalah ditemukan ketika tim kami menyiapkan laporan kegiatan mingguan. Pada halaman daftar, jumlah catatan sesuai dengan data yang dimasukkan oleh operator. Filter tanggal sudah dipilih untuk seluruh minggu dan tidak ada pembatasan berdasarkan petugas. Ketika tombol ekspor digunakan, aplikasi menghasilkan berkas tanpa menampilkan pesan kesalahan. Namun jumlah baris di dalam berkas lebih sedikit daripada jumlah yang terlihat pada layar. Beberapa catatan yang hilang berasal dari hari yang berbeda, sehingga masalah tidak tampak terbatas pada satu tanggal. Saya sudah mengulangi proses dengan filter yang lebih sempit dan menemukan bahwa sebagian catatan dapat muncul jika diekspor secara terpisah. Ini membuat kami menduga ada masalah pada pengambilan data atau batas jumlah hasil dalam satu permintaan. Saya belum dapat memastikan penyebabnya dan berharap tim teknis memeriksa proses tersebut. Ekspor ke format spreadsheet maupun PDF menunjukkan jumlah catatan yang tidak lengkap. Nama kolom dan format tanggal masih benar, tetapi beberapa baris tidak disertakan. Data pada aplikasi sendiri tidak terlihat terhapus. Rekan yang memiliki izin akses sama mencoba proses dari perangkat lain dan mendapatkan hasil serupa. Kami menggunakan versi aplikasi terbaru dan telah mencoba peramban yang berbeda. Membersihkan cache tidak mengubah hasil. Saya mencatat jumlah baris yang terlihat di halaman, jumlah baris hasil ekspor, rentang tanggal, dan waktu setiap percobaan. Catatan tersebut dapat diberikan sebagai bahan reproduksi masalah. Saya juga menyiapkan contoh nomor catatan yang hilang agar tim dapat membandingkan hasil permintaan dengan data yang tersimpan. Untuk menjaga informasi internal, contoh berkas akan dikirim melalui kanal dukungan resmi. Mohon jelaskan apakah fungsi ekspor memiliki batas jumlah baris yang tidak ditampilkan pada antarmuka. Jika memang ada batas, kami membutuhkan petunjuk untuk mengambil seluruh data secara aman. Jika masalah berasal dari kesalahan implementasi, tolong berikan perkiraan waktu perbaikan dan cara sementara yang dapat digunakan tanpa mengubah data sumber. Kami berharap tidak perlu menyalin tabel secara manual karena cara itu mudah menghasilkan kesalahan. Laporan diperlukan oleh beberapa tim, sehingga kelengkapan catatan harus dapat diverifikasi. Setelah perbaikan, kami akan membandingkan jumlah baris dan nomor catatan dengan tampilan aplikasi. Tolong pastikan urutan serta isi kolom juga tetap konsisten. Saya meminta nomor laporan agar komunikasi berikutnya dapat mengikuti riwayat yang sama. Jika dibutuhkan sesi pemeriksaan bersama, saya dapat menjadwalkan demonstrasi pada akun uji yang memiliki pola data serupa. Tim kami tidak ingin menghapus atau mengunggah ulang catatan sebelum mengetahui penyebab",
+      "expected": "technical",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 573,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.0143,
+          "technical": 0.9297,
+          "other": 0.0561
+        },
+        "confidence": 0.7361,
+        "answer_confidence": 0.9297,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    },
+    {
+      "id": "other_512",
+      "text": " Saya ingin meminta informasi mengenai prosedur kunjungan edukasi untuk rombongan mahasiswa ke fasilitas perusahaan. Mohon arahkan permintaan ini kepada tim yang menangani hubungan masyarakat atau kegiatan kunjungan institusi. Tujuan kegiatan adalah mengenalkan proses kerja dan pengelolaan dokumen kepada mahasiswa yang sedang mengikuti mata kuliah administrasi. Kami belum melakukan pemesanan dan masih menyesuaikan rencana dengan kebijakan penerimaan pengunjung. Jumlah peserta diperkirakan tiga puluh orang, didampingi dua dosen. Kami dapat membagi rombongan menjadi kelompok kecil apabila jumlah tersebut melebihi kapasitas satu sesi. Waktu kunjungan yang diusulkan berada pada hari kerja bulan depan, tetapi tanggalnya masih dapat disesuaikan dengan jadwal perusahaan. Mohon jelaskan hari yang tersedia, durasi kegiatan, dan batas jumlah peserta. Kami juga ingin mengetahui apakah diperlukan surat permohonan resmi dari fakultas. Jika ada format surat tertentu, tolong kirimkan contoh atau daftar informasi yang wajib dicantumkan. Kami dapat menyiapkan identitas penanggung jawab, daftar peserta, dan tujuan pembelajaran. Untuk persiapan keberangkatan, saya membutuhkan alamat lokasi serta petunjuk mengenai pintu masuk yang digunakan oleh rombongan. Mohon sampaikan apakah kendaraan kampus dapat berhenti di area penerimaan dan apakah tersedia tempat parkir untuk bus kecil. Jika peserta perlu berjalan dari lokasi parkir, kami ingin memperkirakan waktu kedatangan agar tidak terlambat. Salah satu peserta membutuhkan akses yang mudah dilalui, sehingga informasi mengenai tangga dan jalur masuk akan membantu persiapan. Kami ingin mengikuti seluruh ketentuan keamanan yang berlaku. Tolong jelaskan dokumen identitas yang perlu dibawa, aturan pakaian, barang yang tidak boleh masuk, dan kebijakan penggunaan kamera. Jika pengambilan gambar hanya diperbolehkan pada area tertentu, kami akan menyampaikan aturan tersebut kepada peserta sebelum berangkat. Kami juga dapat mengumpulkan pertanyaan mahasiswa terlebih dahulu agar sesi diskusi lebih terarah. Topik yang ingin dipahami meliputi pembagian tugas, alur pemeriksaan dokumen, dan cara perusahaan menjaga mutu layanan. Kami tidak meminta akses ke informasi rahasia atau area yang tidak diperbolehkan untuk pengunjung. Apabila ada materi pengantar yang dapat dibaca sebelum kunjungan, mohon bagikan tautan atau dokumen resminya. Dosen pendamping akan menggunakan materi tersebut untuk mempersiapkan peserta. Kami juga ingin mengetahui apakah tersedia narasumber untuk penjelasan singkat dan apakah diskusi dilakukan sebelum atau sesudah tur. Untuk administrasi kampus, kami memerlukan konfirmasi tertulis mengenai jadwal yang telah disepakati. Jika tanggal belum dapat ditentukan sekarang, cukup berikan prosedur pengajuan serta perkiraan waktu tanggapan. Mohon sebutkan kontak yang dapat dihubungi agar koordinasi tidak tersebar ke banyak bagian. Saya akan menjadi penghubung",
+      "expected": "other",
+      "target_state_tokens": 512,
+      "actual_state_tokens": 512,
+      "source_draft_tokens": 589,
+      "baseline_answer": {
+        "type": "choice",
+        "choice": "technical",
+        "probabilities": {
+          "billing": 0.2317,
+          "technical": 0.3861,
+          "other": 0.3822
+        },
+        "confidence": 0.0225,
+        "answer_confidence": 0.3861,
+        "action": {
+          "act_probability": 1.0
+        }
+      },
+      "baseline_usage": {
+        "input_tokens": 557,
+        "output_tokens": 0,
+        "state_tokens": 512,
+        "state_tokens_dropped": 0,
+        "truncated": false,
+        "truncated_questions": []
+      }
+    }
+  ],
+  "notes": [
+    "Randomized order reduces order bias; separate runs still vary with system conditions.",
+    "FP32 tensor tolerances are configurable and are not INT8 acceptance criteria.",
+    "torch_mm is a software sanity check, not an FPGA implementation.",
+    "End-to-end time includes adapter transfers only if the candidate actually performs them.",
+    "Candidate must synchronously return host CPU float32 output.",
+    "Only selected layers are replaced; default is 0,11,21, not all 22 layers.",
+    "Baseline mistakes are recorded, not relabelled or used to train the model."
+  ],
+  "randomized_latency": [
+    {
+      "case": "billing_64",
+      "median_ms": 66.0466044973873,
+      "p95_ms": 72.21554200077662,
+      "min_ms": 64.93695900280727,
+      "max_ms": 79.1958749978221
+    },
+    {
+      "case": "technical_64",
+      "median_ms": 66.07237499702023,
+      "p95_ms": 76.28816599753918,
+      "min_ms": 65.13566699868534,
+      "max_ms": 79.26424999459414
+    },
+    {
+      "case": "other_64",
+      "median_ms": 66.05633350045537,
+      "p95_ms": 90.2517920039827,
+      "min_ms": 65.02487500256393,
+      "max_ms": 94.02358299848856
+    },
+    {
+      "case": "billing_128",
+      "median_ms": 87.78297900062171,
+      "p95_ms": 89.77237500221236,
+      "min_ms": 86.07262499572244,
+      "max_ms": 94.671582999581
+    },
+    {
+      "case": "technical_128",
+      "median_ms": 87.6500624945038,
+      "p95_ms": 93.9473749967874,
+      "min_ms": 86.16379200248048,
+      "max_ms": 94.2436249970342
+    },
+    {
+      "case": "other_128",
+      "median_ms": 87.59545800057822,
+      "p95_ms": 96.32433300430421,
+      "min_ms": 86.29537499655271,
+      "max_ms": 117.88079200050561
+    },
+    {
+      "case": "billing_256",
+      "median_ms": 135.9811250003986,
+      "p95_ms": 153.44475000165403,
+      "min_ms": 133.55837499693735,
+      "max_ms": 153.55329199519474
+    },
+    {
+      "case": "technical_256",
+      "median_ms": 136.1256454983959,
+      "p95_ms": 155.3899169957731,
+      "min_ms": 133.9109999971697,
+      "max_ms": 166.4080839982489
+    },
+    {
+      "case": "other_256",
+      "median_ms": 136.15883300371934,
+      "p95_ms": 173.68854199594352,
+      "min_ms": 133.37429099919973,
+      "max_ms": 174.8303330023191
+    },
+    {
+      "case": "billing_512",
+      "median_ms": 256.3100414990913,
+      "p95_ms": 272.42887500324287,
+      "min_ms": 251.98566699691582,
+      "max_ms": 294.4520829987596
+    },
+    {
+      "case": "technical_512",
+      "median_ms": 256.98075000036624,
+      "p95_ms": 270.84512500005076,
+      "min_ms": 252.8067910025129,
+      "max_ms": 272.65429100225447
+    },
+    {
+      "case": "other_512",
+      "median_ms": 256.123145994934,
+      "p95_ms": 260.48508399981074,
+      "min_ms": 252.06508300470887,
+      "max_ms": 275.1664589959546
+    }
+  ],
+  "export_sanity_passed": true
+}

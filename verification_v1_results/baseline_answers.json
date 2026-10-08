@@ -1,0 +1,170 @@
+{
+  "billing_64": {
+    "type": "choice",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 1.0,
+      "technical": 0.0,
+      "other": 0.0
+    },
+    "confidence": 0.9997,
+    "answer_confidence": 1.0,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "technical_64": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.0122,
+      "technical": 0.9731,
+      "other": 0.0147
+    },
+    "confidence": 0.8705,
+    "answer_confidence": 0.9731,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "other_64": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.4056,
+      "technical": 0.4404,
+      "other": 0.1539
+    },
+    "confidence": 0.0759,
+    "answer_confidence": 0.4404,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "billing_128": {
+    "type": "choice",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 0.9025,
+      "technical": 0.0483,
+      "other": 0.0492
+    },
+    "confidence": 0.6477,
+    "answer_confidence": 0.9025,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "technical_128": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.0217,
+      "technical": 0.9623,
+      "other": 0.016
+    },
+    "confidence": 0.8306,
+    "answer_confidence": 0.9623,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "other_128": {
+    "type": "choice",
+    "choice": "other",
+    "probabilities": {
+      "billing": 0.0692,
+      "technical": 0.2032,
+      "other": 0.7276
+    },
+    "confidence": 0.3264,
+    "answer_confidence": 0.7276,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "billing_256": {
+    "type": "choice",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 0.9964,
+      "technical": 0.0015,
+      "other": 0.0021
+    },
+    "confidence": 0.976,
+    "answer_confidence": 0.9964,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "technical_256": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.0041,
+      "technical": 0.9767,
+      "other": 0.0192
+    },
+    "confidence": 0.8892,
+    "answer_confidence": 0.9767,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "other_256": {
+    "type": "choice",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 0.8002,
+      "technical": 0.1152,
+      "other": 0.0846
+    },
+    "confidence": 0.4209,
+    "answer_confidence": 0.8002,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "billing_512": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.4047,
+      "technical": 0.4171,
+      "other": 0.1782
+    },
+    "confidence": 0.055,
+    "answer_confidence": 0.4171,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "technical_512": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.0143,
+      "technical": 0.9297,
+      "other": 0.0561
+    },
+    "confidence": 0.7361,
+    "answer_confidence": 0.9297,
+    "action": {
+      "act_probability": 1.0
+    }
+  },
+  "other_512": {
+    "type": "choice",
+    "choice": "technical",
+    "probabilities": {
+      "billing": 0.2317,
+      "technical": 0.3861,
+      "other": 0.3822
+    },
+    "confidence": 0.0225,
+    "answer_confidence": 0.3861,
+    "action": {
+      "act_probability": 1.0
+    }
+  }
+}

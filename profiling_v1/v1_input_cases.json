@@ -1,0 +1,72 @@
+[
+  {
+    "id": "billing_original",
+    "text": "Saya ditagih dua kali. Tolong kembalikan pembayaran yang duplikat.",
+    "expected": "billing",
+    "target_state_tokens": null,
+    "actual_state_tokens": 17
+  },
+  {
+    "id": "billing_64",
+    "text": " Saya ditagih dua kali. Tolong kembalikan pembayaran yang duplikat. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi",
+    "expected": "billing",
+    "target_state_tokens": 64,
+    "actual_state_tokens": 64
+  },
+  {
+    "id": "billing_128",
+    "text": " Saya ditagih dua kali. Tolong kembalikan pembayaran yang duplikat. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini",
+    "expected": "billing",
+    "target_state_tokens": 128,
+    "actual_state_tokens": 128
+  },
+  {
+    "id": "billing_256",
+    "text": " Saya ditagih dua kali. Tolong kembalikan pembayaran yang duplikat. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna",
+    "expected": "billing",
+    "target_state_tokens": 256,
+    "actual_state_tokens": 256
+  },
+  {
+    "id": "billing_512",
+    "text": " Saya ditagih dua kali. Tolong kembalikan pembayaran yang duplikat. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk",
+    "expected": "billing",
+    "target_state_tokens": 512,
+    "actual_state_tokens": 512
+  },
+  {
+    "id": "technical_original",
+    "text": "Aplikasi selalu crash ketika saya membuka pengaturan.",
+    "expected": "technical",
+    "target_state_tokens": null,
+    "actual_state_tokens": 8
+  },
+  {
+    "id": "technical_64",
+    "text": " Aplikasi selalu crash ketika saya membuka pengaturan. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk mel",
+    "expected": "technical",
+    "target_state_tokens": 64,
+    "actual_state_tokens": 64
+  },
+  {
+    "id": "technical_128",
+    "text": " Aplikasi selalu crash ketika saya membuka pengaturan. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna.",
+    "expected": "technical",
+    "target_state_tokens": 128,
+    "actual_state_tokens": 128
+  },
+  {
+    "id": "technical_256",
+    "text": " Aplikasi selalu crash ketika saya membuka pengaturan. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan",
+    "expected": "technical",
+    "target_state_tokens": 256,
+    "actual_state_tokens": 256
+  },
+  {
+    "id": "technical_512",
+    "text": " Aplikasi selalu crash ketika saya membuka pengaturan. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan untuk melengkapi laporan pengguna. Ini merupakan informasi tambahan",
+    "expected": "technical",
+    "target_state_tokens": 512,
+    "actual_state_tokens": 512
+  }
+]

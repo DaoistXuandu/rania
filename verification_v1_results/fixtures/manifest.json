@@ -1,0 +1,1658 @@
+[
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "billing_64__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "billing_64__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "billing_64__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "billing_64__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "billing_64__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_64",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "billing_64__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "technical_64__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "technical_64__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "technical_64__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "technical_64__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "technical_64__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "technical_64",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "technical_64__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "other_64__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "other_64__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "other_64__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "other_64__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "other_64__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "other_64",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "other_64__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      109,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      109,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      109,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "billing_128__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "billing_128__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "billing_128__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "billing_128__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "billing_128__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_128",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "billing_128__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "technical_128__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "technical_128__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "technical_128__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "technical_128__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "technical_128__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "technical_128",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "technical_128__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "other_128__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "other_128__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "other_128__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "other_128__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "other_128__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "other_128",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "other_128__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      173,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      173,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      173,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "billing_256__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "billing_256__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "billing_256__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "billing_256__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "billing_256__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_256",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "billing_256__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "technical_256__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "technical_256__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "technical_256__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "technical_256__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "technical_256__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "technical_256",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "technical_256__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "other_256__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "other_256__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "other_256__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "other_256__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "other_256__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "other_256",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "other_256__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      301,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      301,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      301,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "billing_512__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "billing_512__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "billing_512__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "billing_512__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "billing_512__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "billing_512",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "billing_512__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "technical_512__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "technical_512__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "technical_512__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "technical_512__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "technical_512__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "technical_512",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "technical_512__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.0.attn.Wqkv",
+    "fixture_file": "other_512__encoder_layers_0_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_0_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.0.mlp.Wi",
+    "fixture_file": "other_512__encoder_layers_0_mlp_Wi.pt",
+    "weight_file": "encoder_layers_0_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.11.attn.Wqkv",
+    "fixture_file": "other_512__encoder_layers_11_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_11_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.11.mlp.Wi",
+    "fixture_file": "other_512__encoder_layers_11_mlp_Wi.pt",
+    "weight_file": "encoder_layers_11_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.21.attn.Wqkv",
+    "fixture_file": "other_512__encoder_layers_21_attn_Wqkv.pt",
+    "weight_file": "encoder_layers_21_attn_Wqkv_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  },
+  {
+    "case": "other_512",
+    "module": "encoder.layers.21.mlp.Wi",
+    "fixture_file": "other_512__encoder_layers_21_mlp_Wi.pt",
+    "weight_file": "encoder_layers_21_mlp_Wi_weight.pt",
+    "x_shape": [
+      557,
+      768
+    ],
+    "w_shape": [
+      768,
+      2304
+    ],
+    "y_shape": [
+      557,
+      2304
+    ],
+    "original_output_shape": [
+      1,
+      557,
+      2304
+    ]
+  }
+]

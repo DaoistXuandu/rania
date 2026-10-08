@@ -1,0 +1,11 @@
+{\small
+\begin{tabularx}{\linewidth}{|r|R|R|R|R|R|R|}
+\hline
+\hd{L} & \hd{Kernel CPU, ms\U} & \hd{Kernel GPU, ms\U} & \hd{Utilisasi GPU vs puncak} & \hd{Keputusan penuh CPU, ms\U} & \hd{Keputusan penuh GPU, ms\U} & \hd{GPU vs CPU} \\ \hline
+109 & 0,54 & 1,42 & 12\% & 99 & 58 & 1,70$\times$ \\ \hline
+173 & 0,74 & 2,04 & 13\% & 129 & 97 & 1,33$\times$ \\ \hline
+301 & 1,24 & 2,75 & 17\% & 222 & 147 & 1,51$\times$ \\ \hline
+557 & 2,62 & 2,77 & 31\% & 460 & 286 & 1,61$\times$ \\ \hline
+\end{tabularx}}
+\captionof{table}{Median; kernel 50 ulangan, keputusan penuh 20 ulangan; FP32, 4 thread; keputusan GPU = CPU di semua kasus (\code{v2/script/results/bench\_platforms.json}). Mesin laptop pendingin pasif; ulangi setelah cooldown karena throttling menggeser angka CPU.}
+\newcommand{\BenchEeSpeedup}{1,3--1,7$\times$}
